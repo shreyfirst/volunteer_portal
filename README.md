@@ -6,6 +6,21 @@ Volunteer Portal is a platform designed to present, track, and report volunteeri
 
 **Demo:** [https://volunteer-portal-demo.herokuapp.com/](https://volunteer-portal-demo.herokuapp.com/)
 
+## How
+<img src='./docs/How.png'>
+
+## Example
+<img src='./docs/Example.png'>
+
+## About
+- Contributors
+- Impact 
+
+## Users / Customers / Testimonies
+
+## Roadmap
+- Link to Projects board
+
 **Help on Slack:** [Join the Zendesk Volunteer Slack Workspace](https://join.slack.com/t/zendesk-volunteer/shared_invite/enQtNDczNTM5MzEwNjQwLTNmMmI3NzdlNjg4ODc4ZDFmYzBkODljZWQ2NmY0OWM3NDliOTdlMzAzOTdkZTBiYjBmMmQ3ZGFjOTFlMjdlNDk)
 
 * [Deploying your own Volunteer Portal](docs/deploy.md)
