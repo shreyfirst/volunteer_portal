@@ -1,8 +1,8 @@
-class AssociateEventsWithOffice < ActiveRecord::Migration[4.2]
+class AssociateEventsWithHouse < ActiveRecord::Migration[4.2]
   def change
-    sf = Office.find_by(name: 'San Francisco')
-    raise 'the SF office must exist before adding office_id to events' unless sf.try(:id)
+    sf = House.find_by(name: 'San Francisco')
+    raise 'the SF house must exist before adding house_id to events' unless sf.try(:id)
 
-    add_column :events, :office_id, :integer, null: false, index: true, default: sf.id
+    add_column :events, :house_id, :integer, null: false, index: true, default: sf.id
   end
 end

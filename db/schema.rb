@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20200114001524) do
     t.integer "event_type_id"
     t.string "location"
     t.datetime "follow_up_email_sent_at"
-    t.integer "office_id", default: 1, null: false
+    t.integer "house_id", default: 1, null: false
     t.integer "event_group_id"
     t.datetime "starts_at"
     t.datetime "ends_at"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20200114001524) do
     t.integer "user_id", null: false
     t.integer "organization_id", null: false
     t.integer "event_type_id", null: false
-    t.integer "office_id", null: false
+    t.integer "house_id", null: false
     t.integer "duration", null: false
     t.text "description"
     t.date "date", null: false
@@ -87,18 +87,18 @@ ActiveRecord::Schema.define(version: 20200114001524) do
     t.integer "status", limit: 2, default: 0, null: false
     t.datetime "deleted_at"
     t.index ["event_type_id"], name: "index_individual_events_on_event_type_id"
-    t.index ["office_id"], name: "index_individual_events_on_office_id"
+    t.index ["house_id"], name: "index_individual_events_on_house_id"
     t.index ["organization_id"], name: "index_individual_events_on_organization_id"
     t.index ["user_id"], name: "index_individual_events_on_user_id"
   end
 
-  create_table "offices", id: :serial, force: :cascade do |t|
+  create_table "houses", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "identifier", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "timezone"
-    t.index ["updated_at"], name: "index_offices_on_updated_at"
+    t.index ["updated_at"], name: "index_houses_on_updated_at"
   end
 
   create_table "organizations", id: :serial, force: :cascade do |t|
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20200114001524) do
     t.string "last_name"
     t.integer "role_id"
     t.string "timezone", default: "UTC", null: false
-    t.integer "office_id"
+    t.integer "house_id"
     t.string "encrypted_google_token"
     t.string "encrypted_google_token_iv"
     t.datetime "deleted_at"

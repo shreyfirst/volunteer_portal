@@ -17,7 +17,7 @@ Metrics/MethodLength:
 Rails/HasManyOrHasOneDependent:
   Exclude:
     - 'app/models/event_group.rb'
-    - 'app/models/office.rb'
+    - 'app/models/house.rb'
 
 # Offense count: 2
 # Configuration parameters: Blacklist, Whitelist.

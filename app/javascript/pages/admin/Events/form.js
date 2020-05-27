@@ -27,9 +27,9 @@ const validate = values => {
     errors.organization = {}
     errors.organization.id = 'is required'
   }
-  if (!values.office) {
-    errors.office = {}
-    errors.office.id = 'is required'
+  if (!values.house) {
+    errors.house = {}
+    errors.house.id = 'is required'
   }
   if (!values.location) {
     errors.location = 'is required'
@@ -53,7 +53,7 @@ const validate = values => {
 const EventFormPage = ({
   eventTypes,
   tags,
-  offices,
+  houses,
   organizations,
   handleSubmit,
   pristine,
@@ -64,7 +64,7 @@ const EventFormPage = ({
   <EventForm
     eventTypes={eventTypes}
     tags={tags}
-    offices={offices}
+    houses={houses}
     organizations={organizations}
     handleSubmit={handleSubmit}
     disableSubmit={pristine || submitting}

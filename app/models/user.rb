@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_one :user_preference, dependent: :destroy
 
   belongs_to :role
-  belongs_to :office
+  belongs_to :house
 
   attr_accessor :google_token
 
@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { scope: :deleted_at }
   # rubocop:enable Rails/UniqueValidationWithoutIndex
 
-  validates :office, presence: true
+  validates :house, presence: true
 
   def full_name
     [first_name, last_name].join(' ').strip
@@ -29,6 +29,6 @@ class User < ApplicationRecord
 
   def set_defaults
     self.role ||= User.count.zero? ? Role.admin : Role.volunteer
-    self.office ||= Office.default
+    self.house ||= House.default
   end
 end

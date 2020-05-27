@@ -41,7 +41,7 @@ const AddToGoogleCalendar = ({ event }) => {
     location,
     startsAt,
     endsAt,
-    office: { timezone },
+    house: { timezone },
   } = event
   const templateUrl =
     'http://www.google.com/calendar/event?action=TEMPLATE' +
@@ -62,7 +62,7 @@ const AddToGoogleCalendar = ({ event }) => {
 class MapPreview extends Component {
   constructor(props) {
     super(props)
-    // Default to the SF office
+    // Default to the SF house
     this.state = {
       lat: 37.781773,
       lng: -122.410666,

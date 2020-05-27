@@ -1,11 +1,11 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 
 mutation updateUser($input: EditUserInputType!) {
   updateUser(input: $input) {
     ...UserEntry
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     isAdmin
   }

@@ -1,7 +1,7 @@
 module Types
-  class OfficeGraphType < BaseObject
-    graphql_name 'Office'
-    description 'An office'
+  class HouseGraphType < BaseObject
+    graphql_name 'House'
+    description 'An house'
 
     implements GraphQL::Relay::Node.interface
 
@@ -9,7 +9,7 @@ module Types
 
     field :id,         ID,     null: false
     field :name,       String, null: false
-    field :identifier, String, null: false, description: 'A machine-readable version of the office name'
+    field :identifier, String, null: false, description: 'A machine-readable version of the house name'
 
     field :timezone, String,
           null: false,

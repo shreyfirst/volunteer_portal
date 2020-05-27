@@ -11,7 +11,7 @@ module Types::Input
     argument :ends_at, String, required: true
     argument :capacity, Int, required: true
 
-    argument :office, AssociationInputType, required: true
+    argument :house, AssociationInputType, required: true
     argument :event_type, AssociationInputType, required: true
     argument :organization, AssociationInputType, required: true
     argument :tags, [AssociationInputType], required: true

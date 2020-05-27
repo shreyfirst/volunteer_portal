@@ -8,14 +8,14 @@ import { extractIdFromAssociations } from './utils'
 import EventsQuery from './queries/index.gql'
 import EventQuery from './queries/show.gql'
 import CreateEventMutation from './mutations/create.gql'
-import { FilterContext, officeFilterValueLens } from '/context'
+import { FilterContext, houseFilterValueLens } from '/context'
 
 import Loading from 'components/LoadingIcon'
 
 const eventsSort = 'STARTS_AT_DESC'
 
 const transformToReduxFormState = event => {
-  const { title, description, capacity, location, startsAt, endsAt, eventType, tags, office, organization } = event
+  const { title, description, capacity, location, startsAt, endsAt, eventType, tags, house, organization } = event
   return {
     title,
     description,
@@ -25,20 +25,20 @@ const transformToReduxFormState = event => {
     endsAt: new Date(endsAt),
     eventType: R.pick(['id'], eventType || {}),
     tags,
-    office: R.pick(['id'], office || {}),
+    house: R.pick(['id'], house || {}),
     organization: R.pick(['id'], organization || {}),
   }
 }
 
 const NewEvent = ({ router, params }) => {
-  const { filters, setOfficeValue } = useContext(FilterContext)
+  const { filters, setHouseValue } = useContext(FilterContext)
   const { data, loading } = useQuery(EventQuery, { variables: { id: R.propOr('-1', 'id', params) } })
   const [createEvent] = useMutation(CreateEventMutation, {
     update: (proxy, { data: { createEvent } }) => {
       const queryParams = {
         query: EventsQuery,
         variables: {
-          officeId: R.view(officeFilterValueLens, filters),
+          houseId: R.view(houseFilterValueLens, filters),
           sortBy: eventsSort,
         },
       }
@@ -55,7 +55,7 @@ const NewEvent = ({ router, params }) => {
     createEvent({
       variables: { input: extractIdFromAssociations(event) },
     }).then(({ data }) => {
-      setOfficeValue(R.path(['createEvent', 'office', 'id'], data))
+      setHouseValue(R.path(['createEvent', 'house', 'id'], data))
       router.push('/portal/admin/events')
     })
   }
@@ -69,7 +69,7 @@ const NewEvent = ({ router, params }) => {
       event={event && transformToReduxFormState(event)}
       tags={R.propOr([], 'tags', data)}
       eventTypes={R.propOr([], 'eventTypes', data)}
-      offices={R.propOr([], 'offices', data)}
+      houses={R.propOr([], 'houses', data)}
       organizations={R.propOr([], 'organizations', data)}
       onSubmit={onSubmit}
     />

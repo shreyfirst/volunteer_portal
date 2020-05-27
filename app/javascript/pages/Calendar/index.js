@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import * as R from 'ramda'
 import moment from 'moment'
 
-import { togglePopover, changeShowFilter, changeEventFilter, changeOfficeFilter, calendarDateChange } from 'actions'
+import { togglePopover, changeShowFilter, changeEventFilter, changeHouseFilter, calendarDateChange } from 'actions'
 
 import Calendar from 'components/Calendar'
 import EventPopover from 'components/EventPopover'
@@ -16,7 +16,7 @@ import EventQuery from './eventQuery.gql'
 import FetchMoreQuery from './fetchMoreQuery.gql'
 import CreateSignupMutation from 'mutations/CreateSignupMutation.gql'
 import DestroySignupMutation from 'mutations/DestroySignupMutation.gql'
-import { UserContext, FilterContext, officeFilterValueLens } from '/context'
+import { UserContext, FilterContext, houseFilterValueLens } from '/context'
 
 const fetchMoreEvents = (fetchMore, calendarDateChange, currentDate, newDate, scope) => {
   const startOfNewScope = moment(newDate).startOf(scope)
@@ -101,12 +101,12 @@ const CalendarPage = ({
     variables: {
       after: momentAfter,
       before: momentBefore,
-      officeId: R.view(officeFilterValueLens, filters),
+      houseId: R.view(houseFilterValueLens, filters),
     },
   })
 
   const events = R.propOr([], 'events')(data)
-  const offices = R.propOr([], 'offices')(data)
+  const houses = R.propOr([], 'houses')(data)
 
   return (
     <div>
@@ -114,7 +114,7 @@ const CalendarPage = ({
         loading={loading}
         currentPath={locationBeforeTransitions.pathname}
         events={events}
-        offices={offices}
+        houses={houses}
         currentUser={currentUser}
         eventPopover={eventPopover}
         togglePopover={togglePopover}
@@ -160,11 +160,11 @@ const momentBefore = Number(
     .format('X')
 )
 
-const updateEventsCache = (cache, eventChange, officeId) => {
+const updateEventsCache = (cache, eventChange, houseId) => {
   const variables = {
     after: momentAfter,
     before: momentBefore,
-    officeId: officeId || 'current',
+    houseId: houseId || 'current',
   }
 
   const prevCache = cache.readQuery({ query: EventsQuery, variables })
@@ -206,7 +206,7 @@ const withData = compose(
               },
             }
           ) => {
-            updateEventsCache(cache, eventChange, ownProps.filters.officeFilter.value)
+            updateEventsCache(cache, eventChange, ownProps.filters.houseFilter.value)
           },
         }),
     }),
@@ -233,7 +233,7 @@ const withData = compose(
               },
             }
           ) => {
-            updateEventsCache(cache, eventChange, ownProps.filters.officeFilter.value)
+            updateEventsCache(cache, eventChange, ownProps.filters.houseFilter.value)
           },
         }),
     }),

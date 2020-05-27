@@ -1,5 +1,5 @@
 module Mutations
-  class DeleteOffice < BaseMutation
+  class DeleteHouse < BaseMutation
     require_admin
 
     null true
@@ -7,7 +7,7 @@ module Mutations
     argument :id, ID, required: true
 
     def resolve(**args)
-      OfficeResolver.delete(object, args, context)
+      HouseResolver.delete(object, args, context)
     end
   end
 end

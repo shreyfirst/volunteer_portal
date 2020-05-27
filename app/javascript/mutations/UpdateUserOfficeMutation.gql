@@ -1,14 +1,14 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/UserPreferenceEntry.gql"
 
-mutation updateUserOffice($userId: ID!, $officeId: ID!) {
-  updateUserOffice(userId: $userId, officeId: $officeId) {
+mutation updateUserHouse($userId: ID!, $houseId: ID!) {
+  updateUserHouse(userId: $userId, houseId: $houseId) {
     ...UserEntry
     lastSignInAt
     isAdmin
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     preference {
       ...UserPreferenceEntry

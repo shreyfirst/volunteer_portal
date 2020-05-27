@@ -17,7 +17,7 @@ class AppPage extends Component {
 
   render() {
     const {
-      data: { networkStatus, currentUser, offices },
+      data: { networkStatus, currentUser, houses },
       togglePopover,
       popover,
       children,
@@ -27,7 +27,7 @@ class AppPage extends Component {
       <App
         loading={networkStatus === NetworkStatus.loading}
         currentUser={currentUser}
-        offices={offices}
+        houses={houses}
         userPopover={popover && popover.type === 'user' ? popover : null}
         toggleUserPopover={R.partial(togglePopover, ['user', {}])}
       >

@@ -1,5 +1,5 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/OrganizationEntry.gql"
 
 query MyEventsQuery {
@@ -18,8 +18,8 @@ query MyEventsQuery {
         id
         title
       }
-      office {
-        ...OfficeEntry
+      house {
+        ...HouseEntry
       }
       tags {
         id
@@ -42,8 +42,8 @@ query MyEventsQuery {
       }
     }
   }
-  offices(sortBy: NAME_ASC) {
-    ...OfficeEntry
+  houses(sortBy: NAME_ASC) {
+    ...HouseEntry
   }
   eventTypes {
     id

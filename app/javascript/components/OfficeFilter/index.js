@@ -1,2 +1,2 @@
-import OfficeFilter from './OfficeFilter'
-export default OfficeFilter
+import HouseFilter from './HouseFilter'
+export default HouseFilter

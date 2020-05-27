@@ -1,5 +1,5 @@
 import React from 'react'
-import OfficeForm from './'
+import HouseForm from './'
 import renderer from 'react-test-renderer'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 
 const rootReducer = combineReducers({ form: formReducer })
 const store = createStore(rootReducer)
-const WithReduxForm = reduxForm({ form: 'test-office' })(OfficeForm)
+const WithReduxForm = reduxForm({ form: 'test-house' })(HouseForm)
 
 const handleSubmit = () => {}
 

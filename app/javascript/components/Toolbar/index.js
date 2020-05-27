@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next'
 
 import ShowFilter from 'components/ShowFilter'
 import EventFilter from 'components/EventFilter'
-import OfficeFilter from 'components/OfficeFilter'
+import HouseFilter from 'components/HouseFilter'
 import FilterGroup from 'components/FilterGroup'
 
 import LeftIcon from '@zendeskgarden/svg-icons/src/12/chevron-left-fill.svg'
@@ -55,7 +55,7 @@ const Toolbar = ({ label, view, views, onNavigate, onViewChange, t }) => {
             <EventFilter />
           </Margin>
           <Margin>
-            <OfficeFilter />
+            <HouseFilter />
           </Margin>
         </FilterGroup>
         <div>

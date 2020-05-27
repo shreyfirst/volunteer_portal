@@ -1,10 +1,10 @@
-module OfficeResolver
+module HouseResolver
   NAME_DESC = 'NAME_DESC'.freeze
   NAME_ASC = 'NAME_ASC'.freeze
 
   class << self
     def all(_object, args, _context)
-      scope = Office.all
+      scope = House.all
 
       scope = scope_with_sort_by(scope, args[:sort_by])
 
@@ -12,24 +12,24 @@ module OfficeResolver
     end
 
     def create(_, args, _context)
-      office = Office.new(args[:input].to_h)
-      office.save!
+      house = House.new(args[:input].to_h)
+      house.save!
 
-      office
+      house
     end
 
     def update(_, args, _context)
-      office = Office.find(args[:input].id)
-      office.update!(args[:input].to_h.except(:id))
+      house = House.find(args[:input].id)
+      house.update!(args[:input].to_h.except(:id))
 
-      office
+      house
     end
 
     def delete(_, args, _context)
-      office = Office.find(args[:id])
-      office.destroy!
+      house = House.find(args[:id])
+      house.destroy!
 
-      office
+      house
     end
 
     def scope_with_sort_by(scope, sort_by)

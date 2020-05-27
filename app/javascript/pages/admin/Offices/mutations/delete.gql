@@ -1,7 +1,7 @@
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 
-mutation deleteOffice($id: ID!) {
-  deleteOffice(id: $id) {
-    ...OfficeEntry
+mutation deleteHouse($id: ID!) {
+  deleteHouse(id: $id) {
+    ...HouseEntry
   }
 }

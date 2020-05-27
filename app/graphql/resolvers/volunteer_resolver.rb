@@ -17,17 +17,17 @@ module VolunteerResolver
                                 .merge(IndividualEvent.approved)
                                 .select("#{user_entry}, \"individual_events\".\"duration\"")
 
-      office_id = case args[:office_id]
+      house_id = case args[:house_id]
                   when 'all'
                     nil
                   when 'current'
-                    context[:current_user].office_id
+                    context[:current_user].house_id
                   else
-                    args[:office_id]
+                    args[:house_id]
                   end
 
       events_scope, individual_events_scope = scope_with_time(events_scope, individual_events_scope, args[:after], args[:before])
-      events_scope, individual_events_scope = scope_with_office_id(events_scope, individual_events_scope, office_id)
+      events_scope, individual_events_scope = scope_with_house_id(events_scope, individual_events_scope, house_id)
 
       all_events_scope = events_scope.union_all(individual_events_scope)
       all_events_scope = all_events_scope.select("#{user_entry},  SUM(\"duration\") AS \"duration\"").group(user_entry)
@@ -59,11 +59,11 @@ module VolunteerResolver
       [events_scope, individual_events_scope]
     end
 
-    def scope_with_office_id(events_scope, individual_events_scope, office_id)
-      return events_scope, individual_events_scope unless office_id
+    def scope_with_house_id(events_scope, individual_events_scope, house_id)
+      return events_scope, individual_events_scope unless house_id
 
-      events_scope = events_scope.where(office_id: office_id)
-      individual_events_scope = individual_events_scope.where(office_id: office_id)
+      events_scope = events_scope.where(house_id: house_id)
+      individual_events_scope = individual_events_scope.where(house_id: house_id)
 
       [events_scope, individual_events_scope]
     end

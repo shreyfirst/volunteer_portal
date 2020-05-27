@@ -47,8 +47,8 @@ const Admin = ({ location, router, children, t }) => {
             <span className={btnClass(location, 'tags')}>{t('volunteer_portal.admin.tab.tags')}</span>
           </Link>
           <div className={s.navSpacer} />
-          <Link to="/portal/admin/offices">
-            <span className={btnClass(location, 'offices')}>{t('volunteer_portal.admin.tab.offices')}</span>
+          <Link to="/portal/admin/houses">
+            <span className={btnClass(location, 'houses')}>{t('volunteer_portal.admin.tab.houses')}</span>
           </Link>
           <div className={s.navSpacer} />
           <Link to="/portal/admin/organizations">

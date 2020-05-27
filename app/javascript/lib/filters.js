@@ -1,14 +1,14 @@
-export function officeFilter(eventAndFilters) {
+export function houseFilter(eventAndFilters) {
   // eslint-disable-line import/prefer-default-export
-  const { event, officeFilter, isValid } = eventAndFilters
+  const { event, houseFilter, isValid } = eventAndFilters
 
   if (!isValid) {
     return eventAndFilters
   }
 
-  if (officeFilter.value === 'all') {
+  if (houseFilter.value === 'all') {
     return eventAndFilters
   }
-  const officeMatches = event.officeId === officeFilter.value
-  return { ...eventAndFilters, isValid: officeMatches }
+  const houseMatches = event.houseId === houseFilter.value
+  return { ...eventAndFilters, isValid: houseMatches }
 }

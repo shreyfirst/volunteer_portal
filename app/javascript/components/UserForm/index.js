@@ -80,7 +80,7 @@ const renderField = props => {
 
 const isNoErrors = errors => R.isNil(errors) || R.isEmpty(errors)
 
-const UserForm = ({ handleSubmit, disableSubmit, errors, offices }) => {
+const UserForm = ({ handleSubmit, disableSubmit, errors, houses }) => {
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       {isNoErrors(errors) ? null : <Callout type="error" message={formatGraphQLErrors(errors)} />}
@@ -108,15 +108,15 @@ const UserForm = ({ handleSubmit, disableSubmit, errors, offices }) => {
       </div>
       <div className={s.inputGroup}>
         <div className={s.column}>
-          <Field label="Office" className={s.field} name="office.id" component={renderField} type="select">
+          <Field label="House" className={s.field} name="house.id" component={renderField} type="select">
             <option value="-" key="-" />
             {R.map(
-              office => (
-                <option value={office.id} key={`office-${office.id}`}>
-                  {office.name}
+              house => (
+                <option value={house.id} key={`house-${house.id}`}>
+                  {house.name}
                 </option>
               ),
-              offices
+              houses
             )}
           </Field>
         </div>

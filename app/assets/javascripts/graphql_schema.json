@@ -78,8 +78,8 @@
               "description": null,
               "args": [
                 {
-                  "name": "officeId",
-                  "description": "the officeId the events belong to, can be set to \"current\" to use the current users office id",
+                  "name": "houseId",
+                  "description": "the houseId the events belong to, can be set to \"current\" to use the current users house id",
                   "type": {
                     "kind": "SCALAR",
                     "name": "ID",
@@ -148,7 +148,7 @@
               "deprecationReason": null
             },
             {
-              "name": "offices",
+              "name": "houses",
               "description": null,
               "args": [
 
@@ -158,7 +158,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "Office",
+                  "name": "House",
                   "ofType": null
                 }
               },
@@ -224,7 +224,7 @@
               "description": null,
               "args": [
                 {
-                  "name": "officeId",
+                  "name": "houseId",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -299,7 +299,7 @@
             },
             {
               "kind": "OBJECT",
-              "name": "Office",
+              "name": "House",
               "ofType": null
             },
             {
@@ -487,14 +487,14 @@
               "deprecationReason": null
             },
             {
-              "name": "office",
+              "name": "house",
               "description": null,
               "args": [
 
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Office",
+                "name": "House",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -651,8 +651,8 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Office",
-          "description": "An office",
+          "name": "House",
+          "description": "An house",
           "fields": [
             {
               "name": "gid",
@@ -886,14 +886,14 @@
               "deprecationReason": null
             },
             {
-              "name": "office",
+              "name": "house",
               "description": null,
               "args": [
 
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Office",
+                "name": "House",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1320,14 +1320,14 @@
               "deprecationReason": null
             },
             {
-              "name": "office",
+              "name": "house",
               "description": null,
               "args": [
 
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Office",
+                "name": "House",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1636,8 +1636,8 @@
               "deprecationReason": null
             },
             {
-              "name": "updateUserOffice",
-              "description": "Update the office of the current user object",
+              "name": "updateUserHouse",
+              "description": "Update the house of the current user object",
               "args": [
                 {
                   "name": "userId",
@@ -1654,7 +1654,7 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "officeId",
+                  "name": "houseId",
                   "description": null,
                   "type": {
                     "kind": "NON_NULL",

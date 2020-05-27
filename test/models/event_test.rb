@@ -3,9 +3,9 @@ require_relative '../test_helper'
 SingleCov.covered! uncovered: 4
 
 describe Event do
-  fixtures :events, :users, :offices
+  fixtures :events, :users, :houses
 
-  let(:sf) { offices(:san_francisco) }
+  let(:sf) { houses(:san_francisco) }
 
   describe '#sign_up_user!' do
     let(:event) { events(:minimum) }
@@ -81,7 +81,7 @@ describe Event do
       event = Event.new(
         organization: organizations(:kittens), type: event_types(:group),
         title: 'イベント', starts_at: Time.zone.now, ends_at: (Time.zone.now + 2.hours), capacity: 60,
-        location: 'Location', office: sf
+        location: 'Location', house: sf
       )
       assert event.save
       assert event.duration == 120
@@ -106,7 +106,7 @@ describe Event do
     event = Event.new(
       organization: organizations(:kittens), type: event_types(:group),
       title: 'イベント', starts_at: Time.zone.now, ends_at: (Time.zone.now + 2.hours), capacity: 60,
-      location: 'Location', office: sf
+      location: 'Location', house: sf
     )
     assert event.save, event.errors.full_messages
   end
@@ -115,7 +115,7 @@ describe Event do
     event = Event.new(
       organization: organizations(:kittens), type: event_types(:group),
       title: 'イベント', starts_at: (Time.zone.now + 2.hours), ends_at: Time.zone.now, capacity: 60,
-      location: 'Location', office: sf
+      location: 'Location', house: sf
     )
     assert_not event.save, event.errors.full_messages
   end
@@ -123,12 +123,12 @@ describe Event do
   it "does not save event without organization" do
     event = Event.new(
       title: 'イベント', starts_at: Time.zone.now, ends_at: (Time.zone.now + 2.hours), capacity: 60,
-      location: 'Location', office: sf
+      location: 'Location', house: sf
     )
     assert_not event.save, event.errors.full_messages
   end
 
-  it "does not save event without office" do
+  it "does not save event without house" do
     event = Event.new(
       organization: organizations(:kittens), type: event_types(:group),
       title: 'イベント', starts_at: Time.zone.now, ends_at: (Time.zone.now + 2.hours), capacity: 60,

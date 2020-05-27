@@ -16,14 +16,14 @@ namespace :volunteer do
 
     Rake::Task['db:seed'].invoke # ensure we have the base seeds before
 
-    OFFICES = ['San Francisco', 'Madison', 'Dublin', 'Copenhagen', 'Melbourne', Office.default.name].freeze
+    OFFICES = ['San Francisco', 'Madison', 'Dublin', 'Copenhagen', 'Melbourne', House.default.name].freeze
     GROUPS = %w[Sales Volunteer IT Orchid Marketing].freeze
 
     type_ids ||= EventType.pluck(:id)
     org_ids  ||= Organization.pluck(:id)
 
-    office_ids ||= OFFICES.map do |o|
-      Office.find_or_create_by!(name: o).id
+    house_ids ||= OFFICES.map do |o|
+      House.find_or_create_by!(name: o).id
     end
 
     ## Users
@@ -31,7 +31,7 @@ namespace :volunteer do
     100.times do
       User.create!(
         email: FFaker::Internet.email.gsub(/@.*?\z/, '@example.com'),
-        office_id: office_ids.sample,
+        house_id: house_ids.sample,
         group: GROUPS.sample,
         first_name: FFaker::Name.first_name,
         last_name: FFaker::Name.last_name,
@@ -81,7 +81,7 @@ namespace :volunteer do
           title: FFaker::HipsterIpsum.phrase,
           event_type_id: type_ids.sample,
           location: FFaker::Address.street_address,
-          office_id: office_ids.sample
+          house_id: house_ids.sample
         )
 
         user_ids.sample(rand(event.capacity)).each do |user_id|

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 
 const rootReducer = combineReducers({ form: formReducer })
 const store = createStore(rootReducer)
-const WithReduxForm = reduxForm({ form: 'test-office' })(OrganizationForm)
+const WithReduxForm = reduxForm({ form: 'test-house' })(OrganizationForm)
 
 const handleSubmit = () => {}
 

@@ -8,7 +8,7 @@ import { Datepicker } from '@zendeskgarden/react-datepickers'
 import { Button } from '@zendeskgarden/react-buttons'
 
 import FilterGroup from '/components/FilterGroup'
-import OfficeFilter from '/components/OfficeFilter'
+import HouseFilter from '/components/HouseFilter'
 
 import s from './main.css'
 
@@ -36,9 +36,9 @@ const columnDefs = t => [
     accessor: 'email',
   },
   {
-    Header: t('volunteer_portal.admin.tab.reporting.office'),
-    id: 'officeName',
-    accessor: 'office.name',
+    Header: t('volunteer_portal.admin.tab.reporting.house'),
+    id: 'houseName',
+    accessor: 'house.name',
   },
   {
     Header: t('volunteer_portal.admin.tab.reporting.hours'),
@@ -92,9 +92,9 @@ const tdProps = () => ({
 const today = new Date()
 
 const tableExporter = (startDate, endDate, onStartChange, onEndChange, t, state, makeTable, instance) => {
-  const headers = 'Name,Email,Office,Hours\n'
+  const headers = 'Name,Email,House,Hours\n'
   const csv = state.pageRows.reduce(
-    (acc, row) => (acc += `${row.name},${row.email},${row.officeName},${row.hours}\n`),
+    (acc, row) => (acc += `${row.name},${row.email},${row.houseName},${row.hours}\n`),
     headers
   )
 
@@ -104,7 +104,7 @@ const tableExporter = (startDate, endDate, onStartChange, onEndChange, t, state,
     <div>
       <div className={s.toolbar}>
         <FilterGroup>
-          <OfficeFilter />
+          <HouseFilter />
           <div>
             <Field>
               <InlineFauxInput>

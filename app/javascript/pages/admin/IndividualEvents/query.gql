@@ -1,5 +1,5 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/OrganizationEntry.gql"
 #import "fragments/EventTypeEntry.gql"
 #import "fragments/IndividualEventEntry.gql"
@@ -7,8 +7,8 @@
 query PendingIndividualEventsQuery {
   currentUser {
     ...UserEntry
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     isAdmin
   }

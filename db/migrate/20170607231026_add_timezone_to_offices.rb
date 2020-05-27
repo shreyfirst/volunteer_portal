@@ -1,5 +1,5 @@
-class AddTimezoneToOffices < ActiveRecord::Migration[5.0]
+class AddTimezoneToHouses < ActiveRecord::Migration[5.0]
   def change
-    add_column :offices, :timezone, :string
+    add_column :houses, :timezone, :string
   end
 end

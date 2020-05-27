@@ -4,17 +4,17 @@ import { Dropdown, Field, Item, Menu, Select } from '@zendeskgarden/react-dropdo
 import { withTranslation } from 'react-i18next'
 import AlertWarning from '@zendeskgarden/svg-icons/src/16/alert-error-fill.svg'
 
-const OfficeFilterError = ({ t }) => (
+const HouseFilterError = ({ t }) => (
   <Dropdown>
     <Field>
       <Select selectedItem="">
-        <strong>{t('volunteer_portal.dashboard.layouteventstab.office')}</strong> <AlertWarning />
+        <strong>{t('volunteer_portal.dashboard.layouteventstab.house')}</strong> <AlertWarning />
       </Select>
     </Field>
     <Menu>
-      <Item value="error">{t('volunteer_portal.filters.office.fetch_error')}</Item>
+      <Item value="error">{t('volunteer_portal.filters.house.fetch_error')}</Item>
     </Menu>
   </Dropdown>
 )
 
-export default withTranslation()(OfficeFilterError)
+export default withTranslation()(HouseFilterError)

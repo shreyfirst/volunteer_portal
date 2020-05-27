@@ -24,7 +24,7 @@ const RightFloatButton = styled(Button)`
 `
 
 const CreateEditModalContents = ({
-  offices,
+  houses,
   eventTypes,
   tags,
   organizations,
@@ -33,11 +33,11 @@ const CreateEditModalContents = ({
   setShowCreateEditModal,
   modalEventData,
 }) => {
-  const currentUserOffice = useContext(UserContext).currentUser.office
+  const currentUserHouse = useContext(UserContext).currentUser.house
 
   const [description, setDescription] = useState(modalEventData?.description || '')
   const [selectedTags, setSelectedTags] = useState(modalEventData?.tags || [])
-  const [selectedOffice, setSelectedOffice] = useState(modalEventData?.office || currentUserOffice.id)
+  const [selectedHouse, setSelectedHouse] = useState(modalEventData?.house || currentUserHouse.id)
   const [date, setDate] = useState(modalEventData?.date || new Date())
   const [duration, setDuration] = useState(modalEventData?.duration || 0)
   const [selectedEventType, setSelectedEventType] = useState(modalEventData?.eventType)
@@ -64,7 +64,7 @@ const CreateEditModalContents = ({
         id: modalEventData?.id,
         description,
         tags: selectedTags,
-        officeId: selectedOffice,
+        houseId: selectedHouse,
         date: date.toISOString(),
         duration,
         eventTypeId: selectedEventType,
@@ -155,14 +155,14 @@ const CreateEditModalContents = ({
           )}
         </PaddedField>
         <PaddedField>
-          <Label>Office</Label>
+          <Label>House</Label>
           <TopMargin />
           <ReduxFormAutocomplete
-            dataSource={offices}
-            input={{ value: selectedOffice, onChange: setSelectedOffice }}
+            dataSource={houses}
+            input={{ value: selectedHouse, onChange: setSelectedHouse }}
             searchField="name"
           />
-          {showFieldErrors && !isValidSelect(selectedOffice) && (
+          {showFieldErrors && !isValidSelect(selectedHouse) && (
             <Message validation={'error'}>{'Must have selection'}</Message>
           )}
         </PaddedField>

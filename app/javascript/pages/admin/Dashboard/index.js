@@ -8,8 +8,8 @@ import Loading from 'components/LoadingIcon'
 import ProgressCircle from 'components/ProgressCircle'
 import Event from 'components/Event'
 import Callout from 'components/Callout'
-import OfficeFilter from '/components/OfficeFilter'
-import { FilterContext, officeFilterValueLens } from '/context'
+import HouseFilter from '/components/HouseFilter'
+import { FilterContext, houseFilterValueLens } from '/context'
 
 import s from './main.css'
 import AttendanceQuery from './attendanceQuery.gql'
@@ -59,7 +59,7 @@ const Dashboard = ({ t }) => {
       weekEnd: endOfWeek,
       monthStart: startOfMonth,
       monthEnd: endOfMonth,
-      officeId: R.view(officeFilterValueLens, filters),
+      houseId: R.view(houseFilterValueLens, filters),
     },
   })
 
@@ -97,7 +97,7 @@ const Dashboard = ({ t }) => {
   return (
     <div>
       <div className={s.row}>
-        <OfficeFilter />
+        <HouseFilter />
       </div>
       <div className={s.row}>
         <div className={s.column}>

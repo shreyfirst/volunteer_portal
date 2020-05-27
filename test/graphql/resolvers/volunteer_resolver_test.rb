@@ -8,14 +8,14 @@ describe VolunteerResolver do
   let(:user3) { users(:b) }
   let(:user4) { users(:cat) }
   let(:user5) { users(:minimum_volunteer) }
-  let(:office) { offices(:remote) }
-  let(:office2) { offices(:madison) }
+  let(:house) { houses(:remote) }
+  let(:house2) { houses(:madison) }
 
   describe '.all' do
     before do
       Signup.delete_all
       IndividualEvent.delete_all
-      user.update(office: office, role: Role.admin)
+      user.update(house: house, role: Role.admin)
     end
 
     let(:event1) { events(:minimum) }
@@ -38,8 +38,8 @@ describe VolunteerResolver do
       _(results).must_equal [user2, user]
     end
 
-    it 'filters by all offices' do
-      args = { office_id: 'all' }
+    it 'filters by all houses' do
+      args = { house_id: 'all' }
 
       Signup.create!(event: event1, user: user)
       Signup.create!(event: event2, user: user2)
@@ -53,8 +53,8 @@ describe VolunteerResolver do
       _(results).must_equal users
     end
 
-    it 'filters by current office' do
-      args = { office_id: 'current' }
+    it 'filters by current house' do
+      args = { house_id: 'current' }
       context = { current_user: user }
 
       Signup.create!(event: event1, user: user)
@@ -63,8 +63,8 @@ describe VolunteerResolver do
       _(results).must_equal [user]
     end
 
-    it 'filters by office_id' do
-      args = { office_id: office.id }
+    it 'filters by house_id' do
+      args = { house_id: house.id }
 
       Signup.create!(event: event1, user: user)
       results = VolunteerResolver.all(nil, args, nil).to_a

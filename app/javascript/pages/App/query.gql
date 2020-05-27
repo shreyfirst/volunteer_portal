@@ -1,5 +1,5 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/UserPreferenceEntry.gql"
 
 query AppQuery {
@@ -7,14 +7,14 @@ query AppQuery {
     ...UserEntry
     lastSignInAt
     isAdmin
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     preference {
       ...UserPreferenceEntry
     }
   }
-  offices(sortBy: NAME_ASC) {
-    ...OfficeEntry
+  houses(sortBy: NAME_ASC) {
+    ...HouseEntry
   }
 }

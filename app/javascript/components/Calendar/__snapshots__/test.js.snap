@@ -10,14 +10,14 @@ exports[`loads 1`] = `
         "id": "1",
         "isAdmin": true,
         "name": "Craig Day",
-        "office": Object {
+        "house": Object {
           "id": "1",
           "identifier": "san_francisco",
           "name": "San Francisco",
         },
         "photo": "https://example.com/photo.jpg",
       },
-      "setOffice": [Function],
+      "setHouse": [Function],
       "setPreference": [Function],
     }
   }
@@ -29,7 +29,7 @@ exports[`loads 1`] = `
         "id": "1",
         "isAdmin": true,
         "name": "Craig Day",
-        "office": Object {
+        "house": Object {
           "id": "1",
           "identifier": "san_francisco",
           "name": "San Francisco",

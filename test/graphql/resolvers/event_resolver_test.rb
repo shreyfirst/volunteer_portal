@@ -5,7 +5,7 @@ SingleCov.covered!
 describe EventResolver do
   let(:type) { event_types(:minimum) }
   let(:org) { organizations(:minimum) }
-  let(:office) { offices(:remote) }
+  let(:house) { houses(:remote) }
   let(:tag) { tags(:minimum) }
 
   describe '.create' do
@@ -17,7 +17,7 @@ describe EventResolver do
         event_type: stub(id: type.id),
         tags: [id: tag.id],
         organization: stub(id: org.id),
-        office: stub(id: office.id),
+        house: stub(id: house.id),
         location: 'newl',
         starts_at: timestamp.iso8601,
         ends_at: (timestamp + 10.minutes).iso8601,
@@ -47,7 +47,7 @@ describe EventResolver do
         event_type: stub(id: type.id),
         tags: [id: tag.id],
         organization: stub(id: org.id),
-        office: stub(id: office.id),
+        house: stub(id: house.id),
         location: 'newl',
         starts_at: timestamp.iso8601,
         ends_at: (timestamp + 10.minutes).iso8601,
@@ -81,8 +81,8 @@ describe EventResolver do
   describe '.all' do
     let(:organization) { organizations(:minimum) }
     let(:event_type) { event_types(:minimum) }
-    let(:office) { offices(:san_francisco) }
-    let(:other_office) { offices(:madison) }
+    let(:house) { houses(:san_francisco) }
+    let(:other_house) { houses(:madison) }
     let(:event1) do
       Event.create!(
         organization: organization,
@@ -93,7 +93,7 @@ describe EventResolver do
         ends_at: event1_start + 1.hour,
         capacity: 10,
         location: 'somewhere',
-        office: office
+        house: house
       )
     end
     let(:event2) do
@@ -106,7 +106,7 @@ describe EventResolver do
         ends_at: event3_start + 1.hour,
         capacity: 10,
         location: 'somewhere',
-        office: office
+        house: house
       )
     end
     let(:event3) do
@@ -119,7 +119,7 @@ describe EventResolver do
         ends_at: event3_start + 1.hour,
         capacity: 10,
         location: 'somewhere',
-        office: other_office
+        house: other_house
       )
     end
     let(:event4) do
@@ -132,7 +132,7 @@ describe EventResolver do
         ends_at: event3_start + 1.hour,
         capacity: 10,
         location: 'somewhere',
-        office: other_office,
+        house: other_house,
         deleted_at: deleted_at
       )
     end
@@ -173,16 +173,16 @@ describe EventResolver do
       end
     end
 
-    describe 'for all offices' do
-      let(:args) { { office_id: 'all' } }
+    describe 'for all houses' do
+      let(:args) { { house_id: 'all' } }
 
       it 'returns all events' do
         assert_equal [event2, event1, event3].map(&:title), all_events.pluck(:title)
       end
     end
 
-    describe 'for your office' do
-      let(:args) { { office_id: 'current' } }
+    describe 'for your house' do
+      let(:args) { { house_id: 'current' } }
 
       it 'returns some events' do
         assert_equal [event2, event1].map(&:title), all_events.pluck(:title)

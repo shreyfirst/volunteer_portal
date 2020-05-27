@@ -11,9 +11,9 @@ import AdminDashboard from 'pages/admin/Dashboard'
 import EventsAdmin from 'pages/admin/Events'
 import NewEvent from 'pages/admin/Events/new'
 import EditEvent from 'pages/admin/Events/edit'
-import OfficesAdmin from 'pages/admin/Offices'
-import NewOffice from 'pages/admin/Offices/new'
-import EditOffice from 'pages/admin/Offices/edit'
+import HousesAdmin from 'pages/admin/Houses'
+import NewHouse from 'pages/admin/Houses/new'
+import EditHouse from 'pages/admin/Houses/edit'
 import OrgsAdmin from 'pages/admin/Organizations'
 import NewOrg from 'pages/admin/Organizations/new'
 import EditOrg from 'pages/admin/Organizations/edit'
@@ -37,9 +37,9 @@ export default (
         <Route path="/portal/admin/events/new(/:id)" component={NewEvent} />
         <Route path="/portal/admin/events/:id/edit" component={EditEvent} />
         <Route path="/portal/admin/events" component={EventsAdmin} />
-        <Route path="/portal/admin/offices/new" component={NewOffice} />
-        <Route path="/portal/admin/offices/:id/edit" component={EditOffice} />
-        <Route path="/portal/admin/offices" component={OfficesAdmin} />
+        <Route path="/portal/admin/houses/new" component={NewHouse} />
+        <Route path="/portal/admin/houses/:id/edit" component={EditHouse} />
+        <Route path="/portal/admin/houses" component={HousesAdmin} />
         <Route path="/portal/admin/organizations/new" component={NewOrg} />
         <Route path="/portal/admin/organizations/:id/edit" component={EditOrg} />
         <Route path="/portal/admin/organizations" component={OrgsAdmin} />

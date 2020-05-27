@@ -5,17 +5,17 @@ import {
   PreviousItem,
 } from '@zendeskgarden/react-dropdowns'
 
-const DefaultOfficeMenu = ({ offices, previousMenuValue, selectedItem, t }) =>
+const DefaultHouseMenu = ({ houses, previousMenuValue, selectedItem, t }) =>
 <>
   <PreviousItem value={previousMenuValue}>
-    {t('volunteer_portal.header.user_profile.default_office')}
+    {t('volunteer_portal.header.user_profile.default_house')}
   </PreviousItem>
   <Separator />
-  {offices.map((office, i) => (
-    <Item key={i} value={{ office, language: selectedItem.language }}>
-      {office.name}
+  {houses.map((house, i) => (
+    <Item key={i} value={{ house, language: selectedItem.language }}>
+      {house.name}
     </Item>
   ))}
 </>
 
-export default DefaultOfficeMenu
+export default DefaultHouseMenu

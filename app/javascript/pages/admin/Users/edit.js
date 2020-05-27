@@ -11,11 +11,11 @@ import Loading from 'components/LoadingIcon'
 import UserQuery from './queries/show.gql'
 import UpdateUserMutation from './mutations/update.gql'
 
-const EditUser = ({ data: { networkStatus, user, offices }, updateUser }) =>
+const EditUser = ({ data: { networkStatus, user, houses }, updateUser }) =>
   networkStatus === NetworkStatus.loading ? (
     <Loading />
   ) : (
-    <UserForm user={user} offices={offices} onSubmit={updateUser} />
+    <UserForm user={user} houses={houses} onSubmit={updateUser} />
   )
 
 const buildOptimisticResponse = user => ({
@@ -35,7 +35,7 @@ const withData = compose(
   graphql(UpdateUserMutation, {
     props: ({ ownProps, mutate }) => ({
       updateUser: user => {
-        const userInput = { id: user.id, officeId: user.office.id, isAdmin: user.isAdmin }
+        const userInput = { id: user.id, houseId: user.house.id, isAdmin: user.isAdmin }
         return mutate({
           variables: { input: userInput },
           optimisticResponse: buildOptimisticResponse(user),

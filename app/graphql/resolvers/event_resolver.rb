@@ -4,17 +4,17 @@ module EventResolver
 
   class << self
     def all(_, args, context)
-      office_id = case args[:office_id]
+      house_id = case args[:house_id]
                   when 'all'
                     nil
                   when 'current'
-                    context[:current_user].office_id
+                    context[:current_user].house_id
                   else
-                    args[:office_id]
+                    args[:house_id]
                   end
 
       events = Event.where(deleted_at: nil)
-      events = events.for_office(office_id) if office_id
+      events = events.for_house(house_id) if house_id
       events = events.before(Time.zone.at(args[:before])) if args[:before]
       events = events.after(Time.zone.at(args[:after]))   if args[:after]
       events = scope_with_sort_by(events, args[:sort_by])
@@ -65,7 +65,7 @@ module EventResolver
       event.description = input.description
       event.event_type_id = input.event_type.id
       event.organization_id = input.organization.id
-      event.office_id = input.office.id
+      event.house_id = input.house.id
       event.location = input.location
       event.capacity = input.capacity
       event.starts_at = Time.zone.parse(input.starts_at)

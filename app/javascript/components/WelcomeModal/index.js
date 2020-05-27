@@ -17,7 +17,7 @@ const Notifications = () => {
   const { currentUser, setPreference } = useContext(UserContext)
   const [confirmProfileSettings, _] = useMutation(ConfirmProfileSettingsMutation)
 
-  const officeName = R.path(['office', 'name'])
+  const houseName = R.path(['house', 'name'])
   const dismiss = () => {
     confirmProfileSettings().then(r => {
       const pref = R.path(['data', 'confirmProfileSettings'], r)
@@ -33,10 +33,10 @@ const Notifications = () => {
         <Header> 🎉 Welcome {currentUser.name}</Header>
         <Body>
           <p>
-            We have chosen <strong>{officeName(currentUser)}</strong> as your current office.
+            We have chosen <strong>{houseName(currentUser)}</strong> as your current house.
           </p>
           <p>
-            To choose a different office, simply use the <Tag pill>Default Office</Tag> setting located in your profile
+            To choose a different house, simply use the <Tag pill>Default House</Tag> setting located in your profile
             menu (top right corner of your screen.)
           </p>
         </Body>

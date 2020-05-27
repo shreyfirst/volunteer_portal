@@ -4,7 +4,7 @@ class CreateIndividualEvents < ActiveRecord::Migration[5.0]
       t.references :user,         null: false
       t.references :organization, null: false
       t.references :event_type,   null: false
-      t.references :office,       null: false
+      t.references :house,       null: false
       t.integer    :duration,     null: false
       t.text       :description
       t.date       :date,         null: false

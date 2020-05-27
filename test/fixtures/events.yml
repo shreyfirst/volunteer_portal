@@ -9,7 +9,7 @@ minimum:
   capacity: 1
   organization: minimum
   location: nowhere
-  office: san_francisco
+  house: san_francisco
 
 simple_event:
   title: 'Find them kittens'
@@ -20,7 +20,7 @@ simple_event:
   organization: minimum
   type: individual
   location: 'Test Location'
-  office: san_francisco
+  house: san_francisco
 
 late_event:
   title: 'Find them kittens 2'
@@ -31,7 +31,7 @@ late_event:
   organization: minimum
   type: individual
   location: 'Test Location'
-  office: san_francisco
+  house: san_francisco
 
 find_kittens:
   title: Find them kittens
@@ -42,7 +42,7 @@ find_kittens:
   capacity: 1
   organization: kittens
   location: Box
-  office: san_francisco
+  house: san_francisco
 
 find_kit_kats:
   title: Find them kit kats
@@ -53,7 +53,7 @@ find_kit_kats:
   capacity: 1
   organization: kittens
   location: Keyboard
-  office: san_francisco
+  house: san_francisco
 
 feed_the_kittens:
   title: Feed teh kitties
@@ -64,4 +64,4 @@ feed_the_kittens:
   capacity: 1
   organization: kittens
   location: Catnip Cave
-  office: san_francisco
+  house: san_francisco

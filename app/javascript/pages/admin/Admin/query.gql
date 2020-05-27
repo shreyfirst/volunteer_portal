@@ -1,15 +1,15 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 
 query AdminQuery {
   currentUser {
     ...UserEntry
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     isAdmin
   }
-  offices(sortBy: NAME_ASC) {
-    ...OfficeEntry
+  houses(sortBy: NAME_ASC) {
+    ...HouseEntry
   }
 }

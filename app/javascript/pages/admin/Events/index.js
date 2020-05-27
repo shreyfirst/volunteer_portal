@@ -9,13 +9,13 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Button } from '@zendeskgarden/react-buttons'
 
 import Loading from 'components/LoadingIcon'
-import OfficeFilter from '/components/OfficeFilter'
+import HouseFilter from '/components/HouseFilter'
 import FilterGroup from 'components/FilterGroup'
 
 import EventsQuery from './queries/index.gql'
 import DeleteEventMutation from './mutations/delete.gql'
 import { withTranslation } from 'react-i18next'
-import { FilterContext, officeFilterValueLens } from '/context'
+import { FilterContext, houseFilterValueLens } from '/context'
 
 import s from './main.css'
 
@@ -129,7 +129,7 @@ const MarginedLink = styled(Link)`
 const Events = ({ t }) => {
   const { filters } = useContext(FilterContext)
   const queryVars = {
-    officeId: R.view(officeFilterValueLens, filters),
+    houseId: R.view(houseFilterValueLens, filters),
     sortBy: eventsSort,
   }
   const { data, loading, error } = useQuery(EventsQuery, {
@@ -166,7 +166,7 @@ const Events = ({ t }) => {
   return (
     <div>
       <FilterGroup>
-        <OfficeFilter />
+        <HouseFilter />
 
         <MarginedLink to="/portal/admin/events/new">
           <Button>{t('volunteer_portal.admin.tab.events_addevent')}</Button>

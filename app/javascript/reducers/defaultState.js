@@ -1,9 +1,9 @@
 const defaultState = {
   showFilter: { value: 'all' },
   eventFilter: { value: 'all' },
-  officeFilter: { value: null },
-  dashboardOfficeFilter: { value: 'current' },
-  adminOfficeFilter: { value: 'current' },
+  houseFilter: { value: null },
+  dashboardHouseFilter: { value: 'current' },
+  adminHouseFilter: { value: 'current' },
   popover: { type: 'event', data: null, anchorEl: null },
   currentUser: {},
   calendarDate: new Date(),

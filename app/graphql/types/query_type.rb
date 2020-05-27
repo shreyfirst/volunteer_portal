@@ -19,7 +19,7 @@ module Types
     end
 
     field :events, [EventGraphType], null: true do
-      argument :office_id, ID,  required: false, description: 'the office_id the events belong to, can be set to "current" to use the current users office id'
+      argument :house_id, ID,  required: false, description: 'the house_id the events belong to, can be set to "current" to use the current users house id'
       argument :after,     Int, required: false, description: 'earliest start time allowed'
       argument :before,    Int, required: false, description: 'latest start time allowed'
       argument :sort_by,   Enum::EventSortEnum, required: false
@@ -36,7 +36,7 @@ module Types
     end
 
     field :users, [UserGraphType], null: true do
-      argument :office_id, ID, required: false
+      argument :house_id, ID, required: false
       argument :sort_by,   Enum::UserSortEnum, required: false
       argument :after,     Int, required: false, description: 'earliest start time allowed'
       argument :before,    Int, required: false, description: 'latest start time allowed'
@@ -47,7 +47,7 @@ module Types
     end
 
     field :volunteers, [UserGraphType], null: true do
-      argument :office_id, ID, required: false
+      argument :house_id, ID, required: false
       argument :sort_by,   Enum::UserSortEnum, required: false
       argument :after,     Int, required: false, description: 'earliest start time allowed'
       argument :before,    Int, required: false, description: 'latest start time allowed'
@@ -57,18 +57,18 @@ module Types
       VolunteerResolver.all(object, args, context)
     end
 
-    field :office, OfficeGraphType, null: true do
+    field :house, HouseGraphType, null: true do
       argument :id, ID, required: true
     end
-    def office(id:)
-      RecordLoader.for(Office).load(id)
+    def house(id:)
+      RecordLoader.for(House).load(id)
     end
 
-    field :offices, [OfficeGraphType], null: true do
-      argument :sort_by, Enum::OfficeSortEnum, required: false
+    field :houses, [HouseGraphType], null: true do
+      argument :sort_by, Enum::HouseSortEnum, required: false
     end
-    def offices(**args)
-      OfficeResolver.all(object, args, context)
+    def houses(**args)
+      HouseResolver.all(object, args, context)
     end
 
     field :event_type, EventTypeGraphType, null: true do

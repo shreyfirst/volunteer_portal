@@ -1,4 +1,4 @@
-class Office < ApplicationRecord
+class House < ApplicationRecord
   DEFAULT_NAME = 'Remote'.freeze
 
   before_validation :ensure_identifier, on: [:create, :update]

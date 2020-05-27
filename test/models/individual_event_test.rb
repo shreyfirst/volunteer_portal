@@ -3,9 +3,9 @@ require_relative '../test_helper'
 SingleCov.covered! uncovered: 3 # not testing all pieces of the case because it isn't meaningful
 
 describe IndividualEvent do
-  fixtures :offices, :event_types, :organizations, :users
+  fixtures :houses, :event_types, :organizations, :users
 
-  let(:office) { offices(:san_francisco) }
+  let(:house) { houses(:san_francisco) }
   let(:type) { event_types(:individual) }
   let(:org) { organizations(:minimum) }
   let(:user) { users(:admin) }
@@ -14,7 +14,7 @@ describe IndividualEvent do
   it 'creates individual event' do
     event = IndividualEvent.new(
       description: 'グループ',
-      office: office,
+      house: house,
       event_type: type,
       tags: [tag],
       organization: org,
@@ -30,7 +30,7 @@ describe IndividualEvent do
     it 'assigns a new tag' do
       event = IndividualEvent.new(
         description: 'グループ',
-        office: office,
+        house: house,
         event_type: type,
         tags: [],
         organization: org,

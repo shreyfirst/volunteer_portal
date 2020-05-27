@@ -1,7 +1,7 @@
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 
-query OfficeQuery($id: ID!) {
-  office(id: $id) {
-    ...OfficeEntry
+query HouseQuery($id: ID!) {
+  house(id: $id) {
+    ...HouseEntry
   }
 }

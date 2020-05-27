@@ -16,10 +16,10 @@ class Event < ApplicationRecord
   belongs_to :organization
   belongs_to :event_type
   belongs_to :type, class_name: 'EventType', foreign_key: 'event_type_id', inverse_of: :events
-  belongs_to :office
+  belongs_to :house
   belongs_to :event_group
 
-  validates :organization, :title, :type, :starts_at, :ends_at, :capacity, :location, :office, presence: true
+  validates :organization, :title, :type, :starts_at, :ends_at, :capacity, :location, :house, presence: true
   validates :capacity, numericality: { only_integer: true }
 
   validate :max_capacity
@@ -30,7 +30,7 @@ class Event < ApplicationRecord
   scope :before,     ->(time) { where("starts_at < ?", time) }
   scope :after,      ->(time) { where("starts_at > ?", time) }
   scope :in_month,   ->(month) { where('EXTRACT(MONTH from starts_at) = ?', month) }
-  scope :for_office, ->(office_id) { where(office_id: office_id) }
+  scope :for_house, ->(house_id) { where(house_id: house_id) }
 
   # can't connect to redis yet, so no ActionCable
   # after_create_commit  :notify_websocket_of_create

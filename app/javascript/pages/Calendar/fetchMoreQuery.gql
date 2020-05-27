@@ -1,13 +1,13 @@
 #import "fragments/EventEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/UserEntry.gql"
 
 query FetchMoreQuery($after: Int, $before: Int) {
   events(after: $after, before: $before) {
     ...EventEntry
     signupCount
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     users {
       ...UserEntry

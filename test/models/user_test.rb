@@ -3,15 +3,15 @@ require_relative '../test_helper'
 SingleCov.covered! uncovered: 17
 
 describe User do
-  fixtures :offices
+  fixtures :houses
 
   describe 'validations' do
-    let(:sf) { offices(:san_francisco) }
+    let(:sf) { houses(:san_francisco) }
 
     let(:user) do
       User.new do |u|
         u.email = 'foo@example.com'
-        u.office = sf
+        u.house = sf
       end
     end
 

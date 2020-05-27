@@ -1,4 +1,4 @@
-fragment OfficeEntry on Office {
+fragment HouseEntry on House {
   id
   identifier
   name

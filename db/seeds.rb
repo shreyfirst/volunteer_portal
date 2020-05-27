@@ -24,32 +24,32 @@ end
   'New Hire', 'Skilled', 'Sustainability'
 ].each { |tag| Tag.find_or_create_by(name: tag) }
 
-sf = Office.find_or_create_by!(name: 'San Francisco') do |office|
-  office.timezone = 'America/Los_Angeles'
+sf = House.find_or_create_by!(name: 'San Francisco') do |house|
+  house.timezone = 'America/Los_Angeles'
 end
 
-madison = Office.find_or_create_by!(name: 'Madison') do |office|
-  office.timezone = 'America/Chicago'
+madison = House.find_or_create_by!(name: 'Madison') do |house|
+  house.timezone = 'America/Chicago'
 end
 
 user1 = User.find_or_create_by!(email: 'agent1@example.com') do |u|
   u.first_name   = 'Bartolomé'
   u.last_name    = 'Bagent'
-  u.office       = sf
+  u.house       = sf
   u.google_token = 'barty_token'
 end
 
 user2 = User.find_or_create_by!(email: 'agent2@example.com') do |u|
   u.first_name   = 'Angela'
   u.last_name    = 'Agent'
-  u.office       = sf
+  u.house       = sf
   u.google_token = 'angelic_token'
 end
 
 user3 = User.find_or_create_by!(email: 'buckybadger@example.com') do |u|
   u.first_name   = 'Bucky'
   u.last_name    = 'Badger'
-  u.office       = madison
+  u.house       = madison
   u.google_token = "bucky_token"
 end
 
@@ -61,7 +61,7 @@ event1 = zendesk.events.create!(
   capacity: 600,
   type: EventType.find_by(title: 'Tutoring'),
   location: 'Hacking a ton Location',
-  office: sf,
+  house: sf,
   tags: Tag.where(name: 'New Hire')
 )
 
@@ -73,7 +73,7 @@ event2 = university.events.create!(
   capacity: 600,
   type: EventType.find_by(title: 'Tutoring'),
   location: 'University of Wisconsin-Madison',
-  office: madison,
+  house: madison,
   tags: Tag.where(name: 'New Hire')
 )
 
@@ -86,13 +86,13 @@ if %w[development test].include?(Rails.env)
   User.find_or_create_by!(email: 'sfadmin@example.com') do |u|
     u.first_name            = 'Volunteer'
     u.last_name             = 'Admin'
-    u.office                = sf
+    u.house                = sf
     u.role                  = Role.find_by(name: 'admin')
   end
 
   User.find_or_create_by!(email: 'sfvolunteer@example.com') do |u|
     u.first_name            = 'SF'
     u.last_name             = 'Volunteer'
-    u.office                = sf
+    u.house                = sf
   end
 end

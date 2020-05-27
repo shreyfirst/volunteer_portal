@@ -30,9 +30,9 @@ module Types
       AssociationLoader.for(IndividualEvent, :event_type).load(object)
     end
 
-    field :office, OfficeGraphType, null: true
-    def office
-      AssociationLoader.for(IndividualEvent, :office).load(object)
+    field :house, HouseGraphType, null: true
+    def house
+      AssociationLoader.for(IndividualEvent, :house).load(object)
     end
 
     field :tags, [TagGraphType], null: true

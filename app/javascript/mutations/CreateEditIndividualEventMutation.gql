@@ -1,5 +1,5 @@
 #import "fragments/OrganizationEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/EventTypeEntry.gql"
 #import "fragments/TagEntry.gql"
 
@@ -21,8 +21,8 @@ mutation createEditIndividualEvent($input: CreateEditIndividualEventInputType!) 
       tags {
         ...TagEntry
       }
-      office {
-        ...OfficeEntry
+      house {
+        ...HouseEntry
       }
     }
   }

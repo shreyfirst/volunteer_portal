@@ -6,41 +6,41 @@ import * as R from 'ramda'
 
 import { graphQLError } from 'actions'
 
-import OfficeForm from './form'
+import HouseForm from './form'
 import Loading from 'components/LoadingIcon'
 
-import OfficeQuery from './queries/show.gql'
-import UpdateOfficeMutation from './mutations/update.gql'
+import HouseQuery from './queries/show.gql'
+import UpdateHouseMutation from './mutations/update.gql'
 
-const EditOffice = ({ data: { networkStatus, office }, updateOffice }) =>
-  networkStatus === NetworkStatus.loading ? <Loading /> : <OfficeForm office={office} onSubmit={updateOffice} />
+const EditHouse = ({ data: { networkStatus, house }, updateHouse }) =>
+  networkStatus === NetworkStatus.loading ? <Loading /> : <HouseForm house={house} onSubmit={updateHouse} />
 
-const buildOptimisticResponse = office => ({
+const buildOptimisticResponse = house => ({
   __typename: 'Mutation',
-  updateOffice: {
-    __typename: 'Office',
-    ...office,
+  updateHouse: {
+    __typename: 'House',
+    ...house,
   },
 })
 
 const withData = compose(
-  graphql(OfficeQuery, {
+  graphql(HouseQuery, {
     options: ({ params: { id } }) => ({
       variables: { id },
     }),
   }),
-  graphql(UpdateOfficeMutation, {
+  graphql(UpdateHouseMutation, {
     props: ({ ownProps, mutate }) => ({
-      updateOffice: office =>
+      updateHouse: house =>
         mutate({
-          variables: { input: R.omit(['identifier', '__typename'], office) },
-          optimisticResponse: buildOptimisticResponse(office),
+          variables: { input: R.omit(['identifier', '__typename'], house) },
+          optimisticResponse: buildOptimisticResponse(house),
         })
           .then(_response => {
-            ownProps.router.push('/portal/admin/offices')
+            ownProps.router.push('/portal/admin/houses')
           })
           .catch(({ graphQLErrors }) => {
-            ownProps.graphQLError('office', graphQLErrors)
+            ownProps.graphQLError('house', graphQLErrors)
           }),
     }),
   })
@@ -55,4 +55,4 @@ const withActions = connect(
   }
 )
 
-export default withActions(withData(EditOffice))
+export default withActions(withData(EditHouse))

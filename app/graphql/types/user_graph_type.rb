@@ -49,9 +49,9 @@ module Types
       AssociationLoader.for(User, :role).load(object)
     end
 
-    field :office, OfficeGraphType, null: true
-    def office
-      AssociationLoader.for(User, :office).load(object)
+    field :house, HouseGraphType, null: true
+    def house
+      AssociationLoader.for(User, :house).load(object)
     end
 
     field :preference, UserPreferenceGraphType, null: true

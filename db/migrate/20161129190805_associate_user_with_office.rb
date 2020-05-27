@@ -1,5 +1,5 @@
-class AssociateUserWithOffice < ActiveRecord::Migration[4.2]
+class AssociateUserWithHouse < ActiveRecord::Migration[4.2]
   def change
-    add_column :users, :office_id, :integer, index: true
+    add_column :users, :house_id, :integer, index: true
   end
 end

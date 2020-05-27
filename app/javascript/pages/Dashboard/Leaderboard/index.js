@@ -12,8 +12,8 @@ import { Tag } from '@zendeskgarden/react-tags'
 import LeaderboardQuery from './leaderboardQuery.gql'
 import ListItem from 'components/ListItem'
 import NamedAvatar from 'components/NamedAvatar'
-import OfficeFilter from 'components/OfficeFilter'
-import { FilterContext, officeFilterValueLens } from 'context'
+import HouseFilter from 'components/HouseFilter'
+import { FilterContext, houseFilterValueLens } from 'context'
 
 import { withTranslation, useTranslation } from 'react-i18next'
 
@@ -58,7 +58,7 @@ const Leaderboard = _props => {
       after: startOfYear,
       before: nowInSec,
       count: leaderBoardSize,
-      officeId: R.view(officeFilterValueLens, filters),
+      houseId: R.view(houseFilterValueLens, filters),
       sortBy: leaderBoardSort,
     },
   })
@@ -71,7 +71,7 @@ const Leaderboard = _props => {
     <div>
       <SectionHeader>
         <SectionTitle>{_props.t('volunteer_portal.admin.tab.user.dashboard.topvolunteers')}</SectionTitle>
-        <OfficeFilter />
+        <HouseFilter />
       </SectionHeader>
       <div>
         {error && (

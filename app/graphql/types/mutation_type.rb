@@ -5,16 +5,16 @@ module Types
     field :create_signup, SignupGraphType, mutation: Mutations::CreateSignup
     field :destroy_signup, SignupGraphType, mutation: Mutations::DestroySignup
 
-    field :update_user_office, UserGraphType, mutation: Mutations::UpdateUserOffice
+    field :update_user_house, UserGraphType, mutation: Mutations::UpdateUserHouse
 
     field :create_edit_individual_event, UserGraphType, mutation: Mutations::CreateEditIndividualEvent
     field :delete_individual_event, UserGraphType, mutation: Mutations::DeleteIndividualEvent
     field :approve_individual_events, [IndividualEventGraphType], mutation: Mutations::ApproveIndividualEvents
     field :reject_individual_events, [IndividualEventGraphType], mutation: Mutations::RejectIndividualEvents
 
-    field :create_office, OfficeGraphType, mutation: Mutations::CreateOffice
-    field :update_office, OfficeGraphType, mutation: Mutations::UpdateOffice
-    field :delete_office, OfficeGraphType, mutation: Mutations::DeleteOffice
+    field :create_house, HouseGraphType, mutation: Mutations::CreateHouse
+    field :update_house, HouseGraphType, mutation: Mutations::UpdateHouse
+    field :delete_house, HouseGraphType, mutation: Mutations::DeleteHouse
 
     field :create_organization, OrganizationGraphType, mutation: Mutations::CreateOrganization
     field :update_organization, OrganizationGraphType, mutation: Mutations::UpdateOrganization

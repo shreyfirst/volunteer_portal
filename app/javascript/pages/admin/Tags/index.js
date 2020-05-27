@@ -44,13 +44,13 @@ const columns = (t, togglePopover) => [
   },
 ]
 
-const destroyActions = (togglePopover, destroyTagPopover, deleteOffice, t) => [
+const destroyActions = (togglePopover, destroyTagPopover, deleteHouse, t) => [
   <button className={`${s.btn} ${s.cancelBtn}`} onClick={() => togglePopover('destroyTag', destroyTagPopover.data)}>
     {t('volunteer_portal.admin.tab.tags.cancel')}
   </button>,
   <button
     className={`${s.btn} ${s.deleteBtn}`}
-    onClick={() => deleteOffice(destroyTagPopover.data) && togglePopover('destroyTag')}
+    onClick={() => deleteHouse(destroyTagPopover.data) && togglePopover('destroyTag')}
   >
     {t('volunteer_portal.admin.tab.tags.delete')}
   </button>,

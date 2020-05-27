@@ -1,9 +1,9 @@
 module Types::Enum
-  class OfficeSortEnum < BaseEnum
-    graphql_name 'OfficeSortEnum'
-    description 'How to sort the resulting list of offices'
+  class HouseSortEnum < BaseEnum
+    graphql_name 'HouseSortEnum'
+    description 'How to sort the resulting list of houses'
 
-    value OfficeResolver::NAME_DESC, 'Sort offices by name in descending order'
-    value OfficeResolver::NAME_ASC, 'Sort offices by name in ascending order'
+    value HouseResolver::NAME_DESC, 'Sort houses by name in descending order'
+    value HouseResolver::NAME_ASC, 'Sort houses by name in ascending order'
   end
 end

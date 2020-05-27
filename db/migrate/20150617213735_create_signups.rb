@@ -2,7 +2,7 @@ class CreateSignups < ActiveRecord::Migration[4.2]
   def change
     create_table :signups do |t|
       t.string :management_level
-      t.string :office_location
+      t.string :house_location
       t.string :team
       t.boolean :fulfilled
       t.timestamps null: false

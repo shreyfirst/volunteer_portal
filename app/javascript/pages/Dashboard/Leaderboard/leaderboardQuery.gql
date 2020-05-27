@@ -1,12 +1,12 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 
-query LeaderboardQuery($count: Int, $sortBy: UserSortEnum, $officeId: ID, $after: Int, $before: Int) {
-  volunteers(count: $count, sortBy: $sortBy, officeId: $officeId, after: $after, before: $before) {
+query LeaderboardQuery($count: Int, $sortBy: UserSortEnum, $houseId: ID, $after: Int, $before: Int) {
+  volunteers(count: $count, sortBy: $sortBy, houseId: $houseId, after: $after, before: $before) {
     ...UserEntry
     hours(after: $after, before: $before)
   }
-  offices(sortBy: NAME_ASC) {
-    ...OfficeEntry
+  houses(sortBy: NAME_ASC) {
+    ...HouseEntry
   }
 }

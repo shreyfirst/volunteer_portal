@@ -54,7 +54,7 @@ const columns = (togglePopover, t) => [
   },
 ]
 
-const destroyActions = (togglePopover, destroyOrganizationPopover, deleteOffice, t) => [
+const destroyActions = (togglePopover, destroyOrganizationPopover, deleteHouse, t) => [
   <button
     className={`${s.btn} ${s.cancelBtn}`}
     onClick={() => togglePopover('destroyOrganization', destroyOrganizationPopover.data)}
@@ -63,7 +63,7 @@ const destroyActions = (togglePopover, destroyOrganizationPopover, deleteOffice,
   </button>,
   <button
     className={`${s.btn} ${s.deleteBtn}`}
-    onClick={() => deleteOffice(destroyOrganizationPopover.data) && togglePopover('destroyOrganization')}
+    onClick={() => deleteHouse(destroyOrganizationPopover.data) && togglePopover('destroyOrganization')}
   >
     {t('volunteer_portal.admin.tab.organizations_delete_delete')}
   </button>,

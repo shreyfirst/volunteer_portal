@@ -3,20 +3,20 @@ import React, { useState, useCallback } from 'react'
 import * as R from 'ramda'
 
 const preferenceLens = R.lensProp('preference')
-const officeLens = R.lensProp('office')
+const houseLens = R.lensProp('house')
 
 export const UserContext = React.createContext(null)
 
 export const UserContextProvider = ({ user, children }) => {
   const [currentUser, setCurrentUser] = useState(user)
 
-  const setOffice = useCallback(office => setCurrentUser(R.set(officeLens, office)), [])
+  const setHouse = useCallback(house => setCurrentUser(R.set(houseLens, house)), [])
   const setPreference = useCallback(pref => setCurrentUser(R.set(preferenceLens, pref)), [])
   const clear = useCallback(() => setCurrentUser(undefined), [])
 
   const ctx = {
     currentUser,
-    setOffice,
+    setHouse,
     setPreference,
     clear,
   }

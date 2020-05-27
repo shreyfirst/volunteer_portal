@@ -9,7 +9,7 @@ const currentUser = {
   email: 'volunteer@example.com',
   photo: 'https://example.com/photo.jpg',
   isAdmin: true,
-  office: {
+  house: {
     id: '1',
     identifier: 'san_francisco',
     name: 'San Francisco',

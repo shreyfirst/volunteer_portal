@@ -79,16 +79,16 @@ const applyEventFilter = dataAndFilters => {
   return dataAndFilters
 }
 
-const applyOfficeFilter = dataAndFilters => {
+const applyHouseFilter = dataAndFilters => {
   const {
     event,
-    filters: { officeFilter },
+    filters: { houseFilter },
     isValid,
   } = dataAndFilters
-  const showAll = officeFilter.value === 'all'
+  const showAll = houseFilter.value === 'all'
 
   if (isValid && !showAll) {
-    return R.merge(dataAndFilters, { isValid: event.office.id == officeFilter.value })
+    return R.merge(dataAndFilters, { isValid: event.house.id == houseFilter.value })
   }
 
   return dataAndFilters
@@ -99,7 +99,7 @@ const filterPipeline = (currentUser, filters, isValid) =>
     event => ({ event, currentUser, filters, isValid }),
     applyShowFilter,
     applyEventFilter,
-    applyOfficeFilter,
+    applyHouseFilter,
     R.prop('isValid')
   )
 

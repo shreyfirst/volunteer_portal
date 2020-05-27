@@ -72,7 +72,7 @@ Naming/MethodParameterName:
 Rails/CreateTableWithTimestamps:
   Exclude:
     - 'db/migrate/20140513234618_events_and_volunteers.rb'
-    - 'db/migrate/20161129184046_create_office.rb'
+    - 'db/migrate/20161129184046_create_house.rb'
 
 # These migrations will not be fixed
 # https://www.rubydoc.info/gems/rubocop-rails/RuboCop/Cop/Rails/ReversibleMigration

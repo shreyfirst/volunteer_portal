@@ -9,14 +9,14 @@ const currentUser = {
   photo: 'https://example.com/photo.jpg',
   isAdmin: true,
   team: null,
-  office: {
+  house: {
     id: '1',
     identifier: 'san_francisco',
     name: 'San Francisco',
   },
 }
 
-const offices = []
+const houses = []
 const userPopover = { type: 'user', data: null, anchorEl: null }
 const togglePopover = () => {}
 
@@ -25,7 +25,7 @@ test('loads', () => {
     <App
       loading={false}
       currentUser={currentUser}
-      offices={offices}
+      houses={houses}
       userPopover={userPopover}
       toggleUserPopover={togglePopover}
     />

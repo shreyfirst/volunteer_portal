@@ -11,7 +11,7 @@ module Types
     field :title,         String,       null: false
     field :description,   String,       null: false
     field :capacity,      Int,          null: false
-    field :office_id,     ID,           null: false
+    field :house_id,     ID,           null: false
     field :event_type_id, ID,           null: false
     field :starts_at,     DatetimeType, null: false
     field :ends_at,       DatetimeType, null: false
@@ -56,9 +56,9 @@ module Types
       AssociationLoader.for(Event, :event_type).load(object)
     end
 
-    field :office, OfficeGraphType, null: true
-    def office
-      AssociationLoader.for(Event, :office).load(object)
+    field :house, HouseGraphType, null: true
+    def house
+      AssociationLoader.for(Event, :house).load(object)
     end
 
     field :tags, [TagGraphType], null: true

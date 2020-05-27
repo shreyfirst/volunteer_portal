@@ -43,9 +43,9 @@ const model = (state = defaultState, action) => {
       const currentUser = action.response.entities.users[action.response.result]
       const newCurrentUserState = {
         currentUser,
-        officeFilter: { value: currentUser.officeId },
-        dashboardOfficeValue: { value: currentUser.officeId },
-        adminOfficeFilter: { value: currentUser.officeId },
+        houseFilter: { value: currentUser.houseId },
+        dashboardHouseValue: { value: currentUser.houseId },
+        adminHouseFilter: { value: currentUser.houseId },
       }
       return R.merge(state, newCurrentUserState)
     }

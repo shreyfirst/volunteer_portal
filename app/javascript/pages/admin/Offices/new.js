@@ -5,17 +5,17 @@ import * as R from 'ramda'
 
 import { graphQLError } from 'actions'
 
-import OfficeForm from './form'
+import HouseForm from './form'
 
-import OfficesQuery from './queries/index.gql'
-import CreateOfficeMutation from './mutations/create.gql'
+import HousesQuery from './queries/index.gql'
+import CreateHouseMutation from './mutations/create.gql'
 
-const NewOffice = ({ createOffice }) => <OfficeForm onSubmit={createOffice} />
+const NewHouse = ({ createHouse }) => <HouseForm onSubmit={createHouse} />
 
 const buildOptimisticResponse = ({ name, timezone }) => ({
   __typename: 'Mutation',
-  createOffice: {
-    __typename: 'Office',
+  createHouse: {
+    __typename: 'House',
     id: '-1',
     identifier: name.toLowerCase(),
     name,
@@ -23,20 +23,20 @@ const buildOptimisticResponse = ({ name, timezone }) => ({
   },
 })
 
-const withData = graphql(CreateOfficeMutation, {
+const withData = graphql(CreateHouseMutation, {
   props: ({ ownProps, mutate }) => ({
-    createOffice: office =>
+    createHouse: house =>
       mutate({
-        variables: { input: office },
-        optimisticResponse: buildOptimisticResponse(office),
-        update: (proxy, { data: { createOffice } }) => {
-          const { offices } = proxy.readQuery({ query: OfficesQuery })
-          const withNewOffice = R.append(createOffice, offices)
-          proxy.writeQuery({ query: OfficesQuery, data: { offices: withNewOffice } })
+        variables: { input: house },
+        optimisticResponse: buildOptimisticResponse(house),
+        update: (proxy, { data: { createHouse } }) => {
+          const { houses } = proxy.readQuery({ query: HousesQuery })
+          const withNewHouse = R.append(createHouse, houses)
+          proxy.writeQuery({ query: HousesQuery, data: { houses: withNewHouse } })
         },
       })
         .then(_response => {
-          ownProps.router.push('/portal/admin/offices')
+          ownProps.router.push('/portal/admin/houses')
         })
         .catch(({ graphQLErrors }) => {
           ownProps.graphQLError(graphQLErrors)
@@ -53,4 +53,4 @@ const withActions = connect(
   }
 )
 
-export default withActions(withData(NewOffice))
+export default withActions(withData(NewHouse))

@@ -5,32 +5,32 @@ import * as R from 'ramda'
 import { Dropdown, Field, Item, Menu, Select } from '@zendeskgarden/react-dropdowns'
 import { withTranslation } from 'react-i18next'
 
-import Error from './OfficeFilterError'
-import Loading from './OfficeFilterLoading'
-import OfficesQuery from './query.gql'
-import { FilterContext, officeFilterValueLens } from '/context'
+import Error from './HouseFilterError'
+import Loading from './HouseFilterLoading'
+import HousesQuery from './query.gql'
+import { FilterContext, houseFilterValueLens } from '/context'
 
-const OfficeFilter = ({ t }) => {
-  const { filters, setOfficeValue } = useContext(FilterContext)
-  const { data, loading, error } = useQuery(OfficesQuery)
+const HouseFilter = ({ t }) => {
+  const { filters, setHouseValue } = useContext(FilterContext)
+  const { data, loading, error } = useQuery(HousesQuery)
 
   if (loading) return <Loading />
   if (error) return <Error />
 
-  const options = R.propOr([], 'offices', data)
-  const all = { id: 'all', name: t('volunteer_portal.dashboard.layouteventstab.office_all') }
-  const value = R.view(officeFilterValueLens, filters)
+  const options = R.propOr([], 'houses', data)
+  const all = { id: 'all', name: t('volunteer_portal.dashboard.layouteventstab.house_all') }
+  const value = R.view(houseFilterValueLens, filters)
   const selectedItem = R.find(R.propEq('id', value))(options) || all
 
   return (
     <Dropdown
       selectedItem={selectedItem}
-      onSelect={option => setOfficeValue(option.id)}
+      onSelect={option => setHouseValue(option.id)}
       downshiftProps={{ itemToString: option => option && option.name }}
     >
       <Field>
         <Select>
-          <strong>{t('volunteer_portal.dashboard.layouteventstab.office')}</strong> {selectedItem.name}
+          <strong>{t('volunteer_portal.dashboard.layouteventstab.house')}</strong> {selectedItem.name}
         </Select>
       </Field>
       <Menu>
@@ -44,4 +44,4 @@ const OfficeFilter = ({ t }) => {
   )
 }
 
-export default withTranslation()(OfficeFilter)
+export default withTranslation()(HouseFilter)

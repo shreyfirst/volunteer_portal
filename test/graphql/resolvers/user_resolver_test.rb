@@ -5,14 +5,14 @@ SingleCov.covered!
 describe UserResolver do
   let(:user) { users(:admin) }
   let(:user2) { users(:a) }
-  let(:office) { offices(:remote) }
-  let(:office2) { offices(:madison) }
+  let(:house) { houses(:remote) }
+  let(:house2) { houses(:madison) }
 
   describe '.all' do
     before do
       Signup.delete_all
       IndividualEvent.delete_all
-      user.update(office: office, role: Role.admin)
+      user.update(house: house, role: Role.admin)
     end
 
     let(:event1) { events(:minimum) }
@@ -35,16 +35,16 @@ describe UserResolver do
       _(results).must_equal [user2, user]
     end
 
-    it 'filters by all offices' do
-      args = { office_id: 'all' }
+    it 'filters by all houses' do
+      args = { house_id: 'all' }
 
       results = UserResolver.all(nil, args, nil).to_a
 
       _(results).must_equal User.all
     end
 
-    it 'filters by current office' do
-      args = { office_id: 'current' }
+    it 'filters by current house' do
+      args = { house_id: 'current' }
       context = { current_user: user }
 
       results = UserResolver.all(nil, args, context).to_a
@@ -52,8 +52,8 @@ describe UserResolver do
       _(results).must_equal [user]
     end
 
-    it 'filters by office_id' do
-      args = { office_id: office.id }
+    it 'filters by house_id' do
+      args = { house_id: house.id }
       results = UserResolver.all(nil, args, nil).to_a
 
       _(results).must_equal [user]
@@ -141,12 +141,12 @@ describe UserResolver do
       it 'updates with editable fields' do
         context = { current_user: user }
         args = {
-          input: stub(id: user2.id, is_admin: false, office_id: office2.id)
+          input: stub(id: user2.id, is_admin: false, house_id: house2.id)
         }
 
         new_user = UserResolver.update(nil, args, context)
         assert_equal Role.volunteer.id, new_user.role.id
-        assert_equal office2.id, new_user.office.id
+        assert_equal house2.id, new_user.house.id
       end
     end
 
@@ -154,12 +154,12 @@ describe UserResolver do
       it 'updates with editable fields' do
         context = { current_user: user2 }
         args = {
-          input: stub(id: user2.id, is_admin: true, office_id: office2.id)
+          input: stub(id: user2.id, is_admin: true, house_id: house2.id)
         }
 
         new_user = UserResolver.update(nil, args, context)
         assert_not_equal Role.admin, new_user.role
-        assert_equal office2.id, new_user.office.id
+        assert_equal house2.id, new_user.house.id
       end
     end
   end

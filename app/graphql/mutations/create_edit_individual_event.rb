@@ -13,7 +13,7 @@ module Mutations
         IndividualEvent.new
       end.tap do |individual_event|
         individual_event.description = input.description
-        individual_event.office_id = input.office_id
+        individual_event.house_id = input.house_id
         individual_event.user = context[:current_user]
         individual_event.date = Date.parse(input.date)
         individual_event.duration = input.duration

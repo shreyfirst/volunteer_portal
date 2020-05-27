@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks'
 import Loading from 'components/LoadingIcon'
 import Reporting from 'components/Reporting'
 
-import { FilterContext, officeFilterValueLens } from '/context'
+import { FilterContext, houseFilterValueLens } from '/context'
 import ReportingQuery from './query.gql'
 import s from './main.css'
 import { addDays } from 'date-fns'
@@ -30,7 +30,7 @@ const ReportingPage = _props => {
     variables: {
       after: formatOrDefaultStartDate(dateRange.start),
       before: formatOrDefaultEndDate(dateRange.end),
-      officeId: R.view(officeFilterValueLens, filters),
+      houseId: R.view(houseFilterValueLens, filters),
     },
   })
 

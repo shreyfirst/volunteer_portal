@@ -13,7 +13,7 @@ const LanguageMenu = ( { languages, previousMenuValue, selectedItem, t }) =>
   </PreviousItem>
   <Separator />
   {languages.map((language, i) => (
-    <Item key={i} value={{ office: selectedItem.office, language }}>
+    <Item key={i} value={{ house: selectedItem.house, language }}>
       {' '}
       {language.label}{' '}
     </Item>

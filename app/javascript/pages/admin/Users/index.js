@@ -8,9 +8,9 @@ import { defaultFilterMethod } from 'lib/utils'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
 import Loading from 'components/LoadingIcon'
-import OfficeFilter from '/components/OfficeFilter'
+import HouseFilter from '/components/HouseFilter'
 import FilterGroup from 'components/FilterGroup'
-import { FilterContext, officeFilterValueLens } from '/context'
+import { FilterContext, houseFilterValueLens } from '/context'
 
 import UsersQuery from './queries/index.gql'
 import DeleteUserMutation from './mutations/delete.gql'
@@ -117,7 +117,7 @@ const Users = ({ t }) => {
   const { filters } = useContext(FilterContext)
 
   const queryVars = {
-    officeId: R.view(officeFilterValueLens, filters),
+    houseId: R.view(houseFilterValueLens, filters),
   }
 
   const { data, error, loading } = useQuery(UsersQuery, { variables: queryVars })
@@ -153,7 +153,7 @@ const Users = ({ t }) => {
   return (
     <div>
       <FilterGroup>
-        <OfficeFilter />
+        <HouseFilter />
       </FilterGroup>
       <ReactTable
         NoDataComponent={() => null}

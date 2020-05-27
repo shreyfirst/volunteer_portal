@@ -1,16 +1,16 @@
 #import "fragments/UserEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 
 query UserQuery($id: ID!) {
   user(id: $id) {
     ...UserEntry
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     timezone
     isAdmin
   }
-  offices(sortBy: NAME_ASC) {
-    ...OfficeEntry
+  houses(sortBy: NAME_ASC) {
+    ...HouseEntry
   }
 }

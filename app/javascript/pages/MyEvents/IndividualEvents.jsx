@@ -66,7 +66,7 @@ const PersonalHeader = styled.div`
 const IndividualEvents = props => {
   const { data, popover, createEditIndividualEvent, deleteIndividualEvent } = props
 
-  const { currentUser, offices, eventTypes, organizations, tags } = data
+  const { currentUser, houses, eventTypes, organizations, tags } = data
 
   const [showCreateEditModal, setShowCreateEditModal] = useState(false)
   const [isNew, setIsNew] = useState(true)
@@ -126,12 +126,12 @@ const IndividualEvents = props => {
           <TableButton
             isBasic
             onClick={() => {
-              const { id, description, office, date, duration, eventType, tags, organization } = props.value
+              const { id, description, house, date, duration, eventType, tags, organization } = props.value
               setIsNew(false)
               setModalEventData({
                 id,
                 description,
-                office: office.id,
+                house: house.id,
                 date: new Date(date),
                 duration,
                 eventType: eventType.id,
@@ -146,11 +146,11 @@ const IndividualEvents = props => {
           <TableButton
             isBasic
             onClick={() => {
-              const { description, office, date, duration, eventType, tags, organization } = props.value
+              const { description, house, date, duration, eventType, tags, organization } = props.value
               setIsNew(true)
               setModalEventData({
                 description,
-                office: office.id,
+                house: house.id,
                 date: new Date(date),
                 duration,
                 eventType: eventType.id,
@@ -214,7 +214,7 @@ const IndividualEvents = props => {
           }}
         >
           <CreateEditModalContents
-            offices={offices}
+            houses={houses}
             eventTypes={eventTypes}
             tags={tags}
             organizations={organizations}

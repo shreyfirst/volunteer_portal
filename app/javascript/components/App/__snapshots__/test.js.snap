@@ -8,7 +8,7 @@ exports[`loads 1`] = `
       "id": "1",
       "isAdmin": true,
       "name": "Craig Day",
-      "office": Object {
+      "house": Object {
         "id": "1",
         "identifier": "san_francisco",
         "name": "San Francisco",
@@ -25,7 +25,7 @@ exports[`loads 1`] = `
         "id": "1",
         "isAdmin": true,
         "name": "Craig Day",
-        "office": Object {
+        "house": Object {
           "id": "1",
           "identifier": "san_francisco",
           "name": "San Francisco",
@@ -459,7 +459,7 @@ exports[`loads 1`] = `
       <div>
         <Header>
           <withRouter(UserProfileMenu)
-            offices={Array []}
+            houses={Array []}
             popover={
               Object {
                 "anchorEl": null,

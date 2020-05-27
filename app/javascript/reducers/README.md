@@ -17,7 +17,7 @@ Only one popover should ever be shown in the app at a time. It is one of the fol
 ```gql
 union Popover
     = Event # used on Calendar page for quick signup and link to event details page
-    | User # used in navigation bar to show menu with options for switching an office
+    | User # used in navigation bar to show menu with options for switching an house
     # Admin pages
     | EditEvent
     | DestroyEvent

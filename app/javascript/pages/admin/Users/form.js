@@ -22,12 +22,12 @@ const validate = values => {
   return errors
 }
 
-const UserFormPage = ({ handleSubmit, pristine, submitting, graphQLErrors, offices }) => (
+const UserFormPage = ({ handleSubmit, pristine, submitting, graphQLErrors, houses }) => (
   <UserForm
     handleSubmit={handleSubmit}
     disableSubmit={pristine || submitting}
     errors={graphQLErrors}
-    offices={offices}
+    houses={houses}
   />
 )
 
@@ -37,8 +37,8 @@ const withReduxForm = reduxForm({
   validate,
 })
 
-const mapStateToProps = ({ graphQLErrors }, { user, offices }) => {
-  const props = { graphQLErrors, offices }
+const mapStateToProps = ({ graphQLErrors }, { user, houses }) => {
+  const props = { graphQLErrors, houses }
 
   return R.isNil(user) ? props : R.merge({ initialValues: user }, props)
 }

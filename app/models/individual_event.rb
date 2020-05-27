@@ -8,12 +8,12 @@ class IndividualEvent < ApplicationRecord
   belongs_to :user
   belongs_to :organization
   belongs_to :event_type
-  belongs_to :office
+  belongs_to :house
 
   has_many :individual_event_tags, dependent: :destroy
   has_many :tags, through: :individual_event_tags
 
-  validates :user, :organization, :event_type, :office,
+  validates :user, :organization, :event_type, :house,
             :description, :date, presence: true
   validates :duration, numericality: {
     only_integer: true,

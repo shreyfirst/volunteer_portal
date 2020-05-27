@@ -3,7 +3,7 @@ minimum:
   date: '2014-12-03'
   duration: 120
   organization: minimum
-  office: san_francisco
+  house: san_francisco
   user: admin
   event_type: individual
 
@@ -12,7 +12,7 @@ approved:
   date: '2014-12-03'
   duration: 120
   organization: minimum
-  office: san_francisco
+  house: san_francisco
   user: admin
   event_type: individual
   status: 1

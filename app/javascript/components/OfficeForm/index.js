@@ -61,12 +61,12 @@ const renderField = props => {
 
 const isNoErrors = errors => R.isNil(errors) || R.isEmpty(errors)
 
-const OfficeForm = ({ handleSubmit, disableSubmit, errors, t }) => (
+const HouseForm = ({ handleSubmit, disableSubmit, errors, t }) => (
   <form className={s.form} onSubmit={handleSubmit}>
     {isNoErrors(errors) ? null : <Callout type="error" message={formatGraphQLErrors(errors)} />}
     <div className={s.inputGroup}>
       <Field
-        label={t('volunteer_portal.admin.tab.offices_addoffice_name')}
+        label={t('volunteer_portal.admin.tab.houses_addhouse_name')}
         className={s.field}
         name="name"
         component={renderField}
@@ -75,14 +75,14 @@ const OfficeForm = ({ handleSubmit, disableSubmit, errors, t }) => (
     </div>
     <div className={s.inputGroup}>
       <Field
-        label={t('volunteer_portal.admin.tab.offices_addoffice_timezone')}
+        label={t('volunteer_portal.admin.tab.houses_addhouse_timezone')}
         className={s.field}
         name="timezone"
         component={renderField}
         type="select"
       >
         <option value="-" key="-">
-          {t('volunteer_portal.admin.tab.offices_addoffice_selecttimezone')}
+          {t('volunteer_portal.admin.tab.houses_addhouse_selecttimezone')}
         </option>
         {R.map(
           zone => (
@@ -96,10 +96,10 @@ const OfficeForm = ({ handleSubmit, disableSubmit, errors, t }) => (
     </div>
     <div className={s.inputGroup}>
       <button className={`${s.btn} ${s.primary}`} type="submit" disabled={disableSubmit}>
-        {t('volunteer_portal.admin.tab.offices_addoffice_save')}
+        {t('volunteer_portal.admin.tab.houses_addhouse_save')}
       </button>
     </div>
   </form>
 )
 
-export default withTranslation()(OfficeForm)
+export default withTranslation()(HouseForm)

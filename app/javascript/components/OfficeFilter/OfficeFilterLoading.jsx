@@ -4,11 +4,11 @@ import { Dropdown, Field, Item, Menu, Select } from '@zendeskgarden/react-dropdo
 import { withTranslation } from 'react-i18next'
 import { Skeleton } from '@zendeskgarden/react-loaders'
 
-const OfficeFilterLoading = ({ t }) => (
+const HouseFilterLoading = ({ t }) => (
   <Dropdown>
     <Field>
       <Select selectedItem="">
-        <strong>{t('volunteer_portal.dashboard.layouteventstab.office')}</strong> <Skeleton width="4rem" />
+        <strong>{t('volunteer_portal.dashboard.layouteventstab.house')}</strong> <Skeleton width="4rem" />
       </Select>
     </Field>
     <Menu>
@@ -23,4 +23,4 @@ const OfficeFilterLoading = ({ t }) => (
   </Dropdown>
 )
 
-export default withTranslation()(OfficeFilterLoading)
+export default withTranslation()(HouseFilterLoading)

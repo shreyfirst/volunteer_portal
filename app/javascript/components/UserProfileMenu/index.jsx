@@ -13,10 +13,10 @@ import {
 import { Avatar } from '@zendeskgarden/react-avatars'
 import { MD } from '@zendeskgarden/react-typography'
 
-import UpdateUserOfficeMutation from '/mutations/UpdateUserOfficeMutation.gql'
+import UpdateUserHouseMutation from '/mutations/UpdateUserHouseMutation.gql'
 import { UserContext, FilterContext } from '/context'
 import GeneralSettingsMenu from './GeneralSettingsMenu'
-import DefaultOfficeMenu from './DefaultOfficeMenu'
+import DefaultHouseMenu from './DefaultHouseMenu'
 import LanguageMenu from './LanguageMenu'
 
 const UserDetails = styled.div`
@@ -34,7 +34,7 @@ const UserName = styled(MD)`
   font-weight: bold;
 `
 
-const UserProfileMenu = ({ offices, location, router, togglePopover }) => {
+const UserProfileMenu = ({ houses, location, router, togglePopover }) => {
   const languages = [
     { label: 'English', value: 'en' },
     // Enable when Japanense is supported
@@ -42,26 +42,26 @@ const UserProfileMenu = ({ offices, location, router, togglePopover }) => {
   ]
   
   const { i18n, t } = useTranslation()
-  const { currentUser, setOffice } = useContext(UserContext)
-  const { setOfficeValue } = useContext(FilterContext)
+  const { currentUser, setHouse } = useContext(UserContext)
+  const { setHouseValue } = useContext(FilterContext)
   const [ isOpen, setIsOpen ] = useState(false)
   const [ tempSelectedItem, setTempSelectedItem ] = useState()
-  const [ selectedItem, setSelectedItem ] = useState({ office: currentUser.office, language: languages[0] })
-  const [ updateDefaultOffice ] = useMutation(UpdateUserOfficeMutation)
+  const [ selectedItem, setSelectedItem ] = useState({ house: currentUser.house, language: languages[0] })
+  const [ updateDefaultHouse ] = useMutation(UpdateUserHouseMutation)
 
   if (R.isNil(currentUser) || R.isEmpty(currentUser)) return null
 
-  const handleOfficeSelect = office =>
-    updateDefaultOffice({ variables: { userId: currentUser.id, officeId: office.id } })
-      .then(response => setOffice(R.path(['data', 'updateUserOffice', 'office'], response)))
-      .then(_ => setOfficeValue(office.id))
+  const handleHouseSelect = house =>
+    updateDefaultHouse({ variables: { userId: currentUser.id, houseId: house.id } })
+      .then(response => setHouse(R.path(['data', 'updateUserHouse', 'house'], response)))
+      .then(_ => setHouseValue(house.id))
       .then(_ => togglePopover('user'))
 
 
   const handleStateChange = (changes, stateAndHelpers) => {
     if (R.hasPath(['isOpen'])(changes)) {
       setIsOpen(
-        changes.selectedItem === 'default-office' ||
+        changes.selectedItem === 'default-house' ||
         changes.selectedItem === 'language-settings' ||
         changes.selectedItem === 'general-settings' ||
         changes.isOpen
@@ -72,7 +72,7 @@ const UserProfileMenu = ({ offices, location, router, togglePopover }) => {
       const itemSelected = R.prop('selectedItem')(changes)
       if (itemSelected === 'general-settings') {
         switch (tempSelectedItem) {
-          case 'default-office':
+          case 'default-house':
             stateAndHelpers.setHighlightedIndex(0)
             break
           case 'language-settings':
@@ -84,9 +84,9 @@ const UserProfileMenu = ({ offices, location, router, togglePopover }) => {
   }
 
   const handleSelect = selectedItem => {
-    if (tempSelectedItem === 'default-office') {
-      if (R.hasPath(['office'])(selectedItem)) {
-        handleOfficeSelect(selectedItem.office)
+    if (tempSelectedItem === 'default-house') {
+      if (R.hasPath(['house'])(selectedItem)) {
+        handleHouseSelect(selectedItem.house)
         setSelectedItem(selectedItem)
       }
     } else if (tempSelectedItem === 'language-settings') {
@@ -107,12 +107,12 @@ const UserProfileMenu = ({ offices, location, router, togglePopover }) => {
   }
 
   const renderItems = () => {
-    if (tempSelectedItem === 'default-office') {
-      return <DefaultOfficeMenu offices={offices} previousMenuValue="general-settings" selectedItem={selectedItem} t={t} />
+    if (tempSelectedItem === 'default-house') {
+      return <DefaultHouseMenu houses={houses} previousMenuValue="general-settings" selectedItem={selectedItem} t={t} />
     } else if (tempSelectedItem === 'language-settings') {
       return <LanguageMenu languages={languages} previousMenuValue="general-settings" selectedItem={selectedItem} t={t} />
     } else {
-      return <GeneralSettingsMenu menuValues={{ defaultOffice: 'default-office', languageSettings: 'language-settings'}} isAdmin={currentUser.isAdmin} pathname={location.pathname} t={t} />
+      return <GeneralSettingsMenu menuValues={{ defaultHouse: 'default-house', languageSettings: 'language-settings'}} isAdmin={currentUser.isAdmin} pathname={location.pathname} t={t} />
     }
   }
 
@@ -121,7 +121,7 @@ const UserProfileMenu = ({ offices, location, router, togglePopover }) => {
       selectedItem={selectedItem}
       // This is used to detect what items are selected with a check mark.
       downshiftProps={{
-        itemToString: item => (item.office && item.office.id) + (item.language && item.language.value),
+        itemToString: item => (item.house && item.house.id) + (item.language && item.language.value),
       }}
       isOpen={isOpen}
       onStateChange={handleStateChange}
@@ -136,7 +136,7 @@ const UserProfileMenu = ({ offices, location, router, togglePopover }) => {
             </Avatar>
             <UserDetails>
               <UserName>{currentUser.name}</UserName>
-              <MD>{currentUser.office && currentUser.office.name}</MD>
+              <MD>{currentUser.house && currentUser.house.name}</MD>
             </UserDetails>
           </UserProfileContainer>
         }

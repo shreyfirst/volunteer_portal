@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import * as R from 'ramda'
 import moment from 'moment-timezone'
 
-import OfficeForm from 'components/OfficeForm'
+import HouseForm from 'components/HouseForm'
 
 import s from './form.css'
 
@@ -22,20 +22,20 @@ const validate = values => {
   return errors
 }
 
-const OfficeFormPage = ({ handleSubmit, pristine, submitting, graphQLErrors }) => (
-  <OfficeForm handleSubmit={handleSubmit} disableSubmit={pristine || submitting} errors={graphQLErrors} />
+const HouseFormPage = ({ handleSubmit, pristine, submitting, graphQLErrors }) => (
+  <HouseForm handleSubmit={handleSubmit} disableSubmit={pristine || submitting} errors={graphQLErrors} />
 )
 
 const withReduxForm = reduxForm({
-  form: 'office',
+  form: 'house',
   enableReinitialize: true,
   validate,
 })
 
-const mapStateToProps = ({ graphQLErrors }, { office }) => {
+const mapStateToProps = ({ graphQLErrors }, { house }) => {
   const props = { graphQLErrors }
 
-  return R.isNil(office) ? props : R.merge({ initialValues: office }, props)
+  return R.isNil(house) ? props : R.merge({ initialValues: house }, props)
 }
 
 const withActions = connect(
@@ -43,4 +43,4 @@ const withActions = connect(
   {}
 )
 
-export default withActions(withReduxForm(OfficeFormPage))
+export default withActions(withReduxForm(HouseFormPage))

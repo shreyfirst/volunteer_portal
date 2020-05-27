@@ -1,14 +1,14 @@
 #import "fragments/EventEntry.gql"
 #import "fragments/EventTypeEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/OrganizationEntry.gql"
 #import "fragments/UserEntry.gql"
 
 query EventQuery($id: ID!) {
   event(id: $id) {
     ...EventEntry
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     eventType {
       ...EventTypeEntry
@@ -27,8 +27,8 @@ query EventQuery($id: ID!) {
   eventTypes {
     ...EventTypeEntry
   }
-  offices(sortBy: NAME_ASC) {
-    ...OfficeEntry
+  houses(sortBy: NAME_ASC) {
+    ...HouseEntry
   }
   organizations {
     ...OrganizationEntry

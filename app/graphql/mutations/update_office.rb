@@ -1,13 +1,13 @@
 module Mutations
-  class UpdateOffice < BaseMutation
+  class UpdateHouse < BaseMutation
     require_admin
 
     null true
 
-    argument :input, Types::Input::EditOfficeInputType, required: true
+    argument :input, Types::Input::EditHouseInputType, required: true
 
     def resolve(**args)
-      OfficeResolver.update(object, args, context)
+      HouseResolver.update(object, args, context)
     end
   end
 end

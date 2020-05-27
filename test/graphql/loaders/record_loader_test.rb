@@ -3,22 +3,22 @@ require_relative '../../test_helper'
 SingleCov.covered!
 
 describe RecordLoader do
-  let(:office) { offices(:san_francisco) }
-  let(:remote_office) { offices(:remote) }
+  let(:house) { houses(:san_francisco) }
+  let(:remote_house) { houses(:remote) }
 
   it 'loads all records' do
-    offices = GraphQL::Batch.batch do
-      RecordLoader.for(Office).load_many([office.id, remote_office.id])
+    houses = GraphQL::Batch.batch do
+      RecordLoader.for(House).load_many([house.id, remote_house.id])
     end
 
-    _(offices.map(&:id).sort).must_equal [office.id, remote_office.id].sort
+    _(houses.map(&:id).sort).must_equal [house.id, remote_house.id].sort
   end
 
   it 'uses the where clause when passed in' do
-    offices = GraphQL::Batch.batch do
-      RecordLoader.for(Office, where: { name: office.name }).load_many([office.id, remote_office.id])
+    houses = GraphQL::Batch.batch do
+      RecordLoader.for(House, where: { name: house.name }).load_many([house.id, remote_house.id])
     end
 
-    _(offices.compact.map(&:id)).must_equal [office.id]
+    _(houses.compact.map(&:id)).must_equal [house.id]
   end
 end

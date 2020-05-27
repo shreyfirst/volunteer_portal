@@ -52,7 +52,7 @@ const individualEventInputToOptimisticResponse = (data, input) => {
     __typename: 'IndividualEvent',
     id: input.id || -1,
     description: input.description,
-    office: R.find(office => office.id === input.officeId, data.offices),
+    house: R.find(house => house.id === input.houseId, data.houses),
     date: moment(input.date),
     duration: input.duration,
     eventType: R.find(et => et.id === input.eventTypeId, data.eventTypes),

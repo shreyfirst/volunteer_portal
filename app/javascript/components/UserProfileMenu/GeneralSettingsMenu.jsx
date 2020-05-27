@@ -9,10 +9,10 @@ import {
 } from '@zendeskgarden/react-dropdowns'
 import TranslationIcon from '@zendeskgarden/svg-icons/src/12/translation-exists-fill.svg'
 
-export const GeneralSettingsMenu = ({ menuValues: { defaultOffice, languageSettings }, isAdmin, pathname, t }) =>
+export const GeneralSettingsMenu = ({ menuValues: { defaultHouse, languageSettings }, isAdmin, pathname, t }) =>
 <>
   <HeaderItem>Settings</HeaderItem>
-  <NextItem value={defaultOffice}>{t('volunteer_portal.header.user_profile.default_office')}</NextItem>
+  <NextItem value={defaultHouse}>{t('volunteer_portal.header.user_profile.default_house')}</NextItem>
   <NextItem value={languageSettings}>
     <TranslationIcon /> {t('volunteer_portal.header.user_profile.language')}
   </NextItem>

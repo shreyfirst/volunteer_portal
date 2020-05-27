@@ -13,8 +13,8 @@ import { graphQLError, togglePopover } from 'actions'
 
 import Loading from 'components/LoadingIcon'
 import FilterGroup from 'components/FilterGroup'
-import OfficesQuery from './queries/index.gql'
-import DeleteOfficeMutation from './mutations/delete.gql'
+import HousesQuery from './queries/index.gql'
+import DeleteHouseMutation from './mutations/delete.gql'
 
 import s from './main.css'
 
@@ -22,28 +22,28 @@ import 'style-loader!css-loader!react-table/react-table.css'
 
 import { withTranslation } from 'react-i18next'
 
-const actionLinks = (office, togglePopover, t) => (
+const actionLinks = (house, togglePopover, t) => (
   <div className={s.actionColumn}>
-    <Link to={`/portal/admin/offices/${office.id}/edit`}>{t('volunteer_portal.admin.tab.offices_edit')}</Link>
-    <button className={s.deleteAction} onClick={() => togglePopover('destroyOffice', office)}>
-      {t('volunteer_portal.admin.tab.offices_delete')}
+    <Link to={`/portal/admin/houses/${house.id}/edit`}>{t('volunteer_portal.admin.tab.houses_edit')}</Link>
+    <button className={s.deleteAction} onClick={() => togglePopover('destroyHouse', house)}>
+      {t('volunteer_portal.admin.tab.houses_delete')}
     </button>
   </div>
 )
 
 const columns = (togglePopover, t) => [
   {
-    Header: t('volunteer_portal.admin.tab.offices_name'),
+    Header: t('volunteer_portal.admin.tab.houses_name'),
     accessor: 'name',
     filterable: true,
   },
   {
-    Header: t('volunteer_portal.admin.tab.offices_timezone'),
+    Header: t('volunteer_portal.admin.tab.houses_timezone'),
     accessor: 'timezone',
     sortable: false,
   },
   {
-    Header: t('volunteer_portal.admin.tab.offices_actions'),
+    Header: t('volunteer_portal.admin.tab.houses_actions'),
     accessor: 'id',
     sortable: false,
     width: 130,
@@ -94,34 +94,34 @@ const tdProps = () => ({
   },
 })
 
-const destroyActions = (togglePopover, destroyOfficePopover, deleteOffice, t) => [
+const destroyActions = (togglePopover, destroyHousePopover, deleteHouse, t) => [
   <button
     className={`${s.btn} ${s.cancelBtn}`}
-    onClick={() => togglePopover('destroyOffice', destroyOfficePopover.data)}
+    onClick={() => togglePopover('destroyHouse', destroyHousePopover.data)}
   >
-    {t('volunteer_portal.admin.tab.offices_delete_cancel')}
+    {t('volunteer_portal.admin.tab.houses_delete_cancel')}
   </button>,
   <button
     className={`${s.btn} ${s.deleteBtn}`}
-    onClick={() => deleteOffice(destroyOfficePopover.data) && togglePopover('destroyOffice')}
+    onClick={() => deleteHouse(destroyHousePopover.data) && togglePopover('destroyHouse')}
   >
-    {t('volunteer_portal.admin.tab.offices_delete_delete')}
+    {t('volunteer_portal.admin.tab.houses_delete_delete')}
   </button>,
 ]
 
-const Offices = ({ data: { networkStatus, offices }, deleteOffice, destroyOfficePopover, togglePopover, t }) =>
+const Houses = ({ data: { networkStatus, houses }, deleteHouse, destroyHousePopover, togglePopover, t }) =>
   networkStatus === NetworkStatus.loading ? (
     <Loading />
   ) : (
     <div>
       <FilterGroup>
-        <Link to="/portal/admin/offices/new">
-          <Button>{t('volunteer_portal.admin.tab.offices_add_office')}</Button>
+        <Link to="/portal/admin/houses/new">
+          <Button>{t('volunteer_portal.admin.tab.houses_add_house')}</Button>
         </Link>
       </FilterGroup>
       <ReactTable
         NoDataComponent={() => null}
-        data={offices}
+        data={houses}
         columns={columns(togglePopover, t)}
         minRows={0}
         defaultFilterMethod={defaultFilterMethod}
@@ -133,41 +133,41 @@ const Offices = ({ data: { networkStatus, offices }, deleteOffice, destroyOffice
         getTrProps={trProps}
         getTdProps={tdProps}
       />
-      {destroyOfficePopover ? (
+      {destroyHousePopover ? (
         <Dialog
-          title={t('volunteer_portal.admin.tab.offices_delete_delete_office')}
-          actions={destroyActions(togglePopover, destroyOfficePopover, deleteOffice, t)}
+          title={t('volunteer_portal.admin.tab.houses_delete_delete_house')}
+          actions={destroyActions(togglePopover, destroyHousePopover, deleteHouse, t)}
           modal={false}
           open
-          onRequestClose={() => togglePopover('destroyOffice', destroyOfficePopover.data)}
+          onRequestClose={() => togglePopover('destroyHouse', destroyHousePopover.data)}
           actionsContainerStyle={{ paddingBottom: 20 }}
         >
-          {t('volunteer_portal.admin.tab.offices_delete_confirmation', { office: destroyOfficePopover.data.name })}
+          {t('volunteer_portal.admin.tab.houses_delete_confirmation', { house: destroyHousePopover.data.name })}
         </Dialog>
       ) : null}
     </div>
   )
 
-const buildOptimisticResponse = office => ({
+const buildOptimisticResponse = house => ({
   __typename: 'Mutation',
-  deleteOffice: {
-    __typename: 'Office',
-    ...office,
+  deleteHouse: {
+    __typename: 'House',
+    ...house,
   },
 })
 
 const withData = compose(
-  graphql(OfficesQuery, {}),
-  graphql(DeleteOfficeMutation, {
+  graphql(HousesQuery, {}),
+  graphql(DeleteHouseMutation, {
     props: ({ ownProps, mutate }) => ({
-      deleteOffice: office =>
+      deleteHouse: house =>
         mutate({
-          variables: { id: office.id },
-          optimisticResponse: buildOptimisticResponse(office),
-          update: (proxy, { data: { deleteOffice } }) => {
-            const { offices } = proxy.readQuery({ query: OfficesQuery })
-            const withOfficeRemoved = R.reject(office => office.id === deleteOffice.id, offices)
-            proxy.writeQuery({ query: OfficesQuery, data: { offices: withOfficeRemoved } })
+          variables: { id: house.id },
+          optimisticResponse: buildOptimisticResponse(house),
+          update: (proxy, { data: { deleteHouse } }) => {
+            const { houses } = proxy.readQuery({ query: HousesQuery })
+            const withHouseRemoved = R.reject(house => house.id === deleteHouse.id, houses)
+            proxy.writeQuery({ query: HousesQuery, data: { houses: withHouseRemoved } })
           },
         }).catch(({ graphQLErrors }) => {
           ownProps.graphQLError(graphQLErrors)
@@ -180,7 +180,7 @@ const mapStateToProps = (state, ownProps) => {
   const { popover } = state.model
 
   return {
-    destroyOfficePopover: popover && popover.type === 'destroyOffice' ? popover : null,
+    destroyHousePopover: popover && popover.type === 'destroyHouse' ? popover : null,
   }
 }
 
@@ -189,4 +189,4 @@ const withActions = connect(mapStateToProps, {
   togglePopover,
 })
 
-export default withActions(withData(withTranslation()(Offices)))
+export default withActions(withData(withTranslation()(Houses)))

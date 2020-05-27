@@ -1,27 +1,27 @@
 #import "fragments/UserEntry.gql"
 #import "fragments/EventEntry.gql"
-#import "fragments/OfficeEntry.gql"
+#import "fragments/HouseEntry.gql"
 #import "fragments/UserEntry.gql"
 
-query EventsQuery($after: Int, $before: Int, $officeId: ID) {
+query EventsQuery($after: Int, $before: Int, $houseId: ID) {
   currentUser {
     ...UserEntry
     isAdmin
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
   }
-  events(after: $after, before: $before, officeId: $officeId) {
+  events(after: $after, before: $before, houseId: $houseId) {
     ...EventEntry
     signupCount
-    office {
-      ...OfficeEntry
+    house {
+      ...HouseEntry
     }
     users {
       ...UserEntry
     }
   }
-  offices(sortBy: NAME_ASC) {
-    ...OfficeEntry
+  houses(sortBy: NAME_ASC) {
+    ...HouseEntry
   }
 }
