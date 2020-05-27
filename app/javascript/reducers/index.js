@@ -39,7 +39,7 @@ const model = (state = defaultState, action) => {
       return R.merge(state, updateUserState)
     }
     case Actions.CURRENT_USER_SUCCESS:
-    case Actions.CURRENT_USER_OFFICE_UPDATE_SUCCESS: {
+    case Actions.CURRENT_USER_HOUSE_UPDATE_SUCCESS: {
       const currentUser = action.response.entities.users[action.response.result]
       const newCurrentUserState = {
         currentUser,

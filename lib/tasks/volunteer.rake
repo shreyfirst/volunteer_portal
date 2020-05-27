@@ -16,13 +16,13 @@ namespace :volunteer do
 
     Rake::Task['db:seed'].invoke # ensure we have the base seeds before
 
-    OFFICES = ['San Francisco', 'Madison', 'Dublin', 'Copenhagen', 'Melbourne', House.default.name].freeze
+    HOUSES = ['San Francisco', 'Madison', 'Dublin', 'Copenhagen', 'Melbourne', House.default.name].freeze
     GROUPS = %w[Sales Volunteer IT Orchid Marketing].freeze
 
     type_ids ||= EventType.pluck(:id)
     org_ids  ||= Organization.pluck(:id)
 
-    house_ids ||= OFFICES.map do |o|
+    house_ids ||= HOUSES.map do |o|
       House.find_or_create_by!(name: o).id
     end
 
